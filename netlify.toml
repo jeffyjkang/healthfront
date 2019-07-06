@@ -1,0 +1,4 @@
+[build]
+    base = "./healthfront"
+    publish = "./healthfront/build"
+    command = "yarn build"
