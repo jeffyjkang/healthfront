@@ -1,5 +1,23 @@
 import React, { Component } from "react";
 import Axios from "axios";
+//
+import { withStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+//
+const styles = theme => ({
+  container: {
+    display: "flex",
+    flexDirection: "column"
+  },
+  textField: {
+    margin: 10
+  },
+  button: {
+    height: 60,
+    margin: 10
+  }
+});
 
 class Login extends Component {
   constructor(props) {
@@ -30,36 +48,45 @@ class Login extends Component {
       });
   };
   render() {
+    const { classes } = this.props;
     return (
       <div>
         <h3>Login</h3>
-        <form onSubmit={this.loginSubmit}>
-          <div className="usernameInputContainer">
-            <input
-              className="usernameInputValue"
-              name="usernameInput"
-              type="text"
-              onChange={this.editLoginHandler}
-              placeholder="Username"
-              value={this.state.usernameInput}
-              required
-            />
-          </div>
-          <div className="passwordInputContainer">
-            <input
-              name="passwordInput"
-              type="password"
-              onChange={this.editLoginHandler}
-              placeholder="Password"
-              value={this.state.passwordInput}
-              required
-            />
-          </div>
-          <button type="submit">Login</button>
+        <form className={classes.container} onSubmit={this.loginSubmit}>
+          <TextField
+            className={classes.textField}
+            name="usernameInput"
+            type="text"
+            onChange={this.editLoginHandler}
+            placeholder="Username"
+            value={this.state.usernameInput}
+            variant="outlined"
+            label="Username"
+            required
+          />
+          <TextField
+            className={classes.textField}
+            name="passwordInput"
+            type="password"
+            onChange={this.editLoginHandler}
+            placeholder="Password"
+            value={this.state.passwordInput}
+            variant="outlined"
+            label="Password"
+            required
+          />
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            className={classes.button}
+          >
+            Login
+          </Button>
         </form>
       </div>
     );
   }
 }
 
-export default Login;
+export default withStyles(styles)(Login);
