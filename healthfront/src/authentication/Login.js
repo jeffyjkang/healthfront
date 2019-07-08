@@ -5,10 +5,13 @@ import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 //
-const styles = theme => ({
+const styles = () => ({
   container: {
+    minHeight: "100vh",
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center"
   },
   textField: {
     margin: 10
@@ -51,8 +54,9 @@ class Login extends Component {
     const { classes } = this.props;
     return (
       <div>
-        <h3>Login</h3>
         <form className={classes.container} onSubmit={this.loginSubmit}>
+          <h1>Health Logger</h1>
+          <h3>Login</h3>
           <TextField
             className={classes.textField}
             name="usernameInput"

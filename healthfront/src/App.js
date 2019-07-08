@@ -3,7 +3,6 @@ import Authenticate from "./authentication/Authenticate";
 import Login from "./authentication/Login";
 import ComponentContainer from "./components/ComponentContainer";
 import { Route } from "react-router-dom";
-import "./App.css";
 
 const AuthComponent = Authenticate(ComponentContainer)(Login);
 
@@ -15,7 +14,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Health Logger</h1>
         <Route path="/" component={AuthComponent} />
       </div>
     );
