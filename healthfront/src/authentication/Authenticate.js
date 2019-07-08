@@ -18,6 +18,9 @@ const Authenticate = ComponentContainer => Login =>
         this.props.history.push("/login");
       }
     }
+    logOut = () => {
+      this.setState({ loggedIn: false });
+    };
     refresh = () => {
       this.componentDidMount();
     };
@@ -27,7 +30,9 @@ const Authenticate = ComponentContainer => Login =>
           {this.state.loggedIn ? (
             <Route
               path="/"
-              render={props => <ComponentContainer {...props} />}
+              render={props => (
+                <ComponentContainer {...props} logOut={this.logOut} />
+              )}
             />
           ) : (
             <Route
