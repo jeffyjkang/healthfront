@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import NavBar from "./navbar/NavBar";
 import { withStyles } from "@material-ui/core/styles";
+//
+import jwt from "jsonwebtoken";
+const secret = process.env.REACT_APP_SECRET;
 
 const styles = () => ({
   container: {
@@ -14,8 +17,27 @@ const styles = () => ({
 class ComponentContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      id: "",
+      username: ""
+    };
   }
+  componentDidMount() {
+    let token = localStorage.getItem("token");
+    if (token) {
+      jwt.verify(token, secret, (error, decodedToken) => {
+        if (error) {
+          return alert("Failed decoding token");
+        } else {
+          this.setState({
+            id: decodedToken.id,
+            username: decodedToken.username
+          });
+        }
+      });
+    }
+  }
+
   signOut = e => {
     e.preventDefault();
     localStorage.removeItem("token");
@@ -26,7 +48,11 @@ class ComponentContainer extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.container}>
-        <NavBar signOut={this.signOut} />
+        <NavBar
+          signOut={this.signOut}
+          id={this.state.id}
+          username={this.state.username}
+        />
         <div>App</div>
       </div>
     );

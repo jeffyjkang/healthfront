@@ -54,10 +54,17 @@ const NavBar = props => {
             onClose={handleClose}
           >
             <MenuItem>
-              <Calendar />
+              <Calendar
+                view="month"
+                showWeekNumbers
+                selectRange
+                value={new Date()}
+              />
             </MenuItem>
           </Menu>
+          <Button className={classes.button}>Create Goal</Button>
           <h1>Health Logger</h1>
+          <h5> Welcome : {props.username}</h5>
           <Button
             className={classes.button}
             variant="contained"
