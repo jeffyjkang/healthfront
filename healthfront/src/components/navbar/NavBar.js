@@ -27,12 +27,31 @@ const styles = () => ({
 
 const NavBar = props => {
   const { classes } = props;
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  function handleClick(e) {
-    setAnchorEl(e.currentTarget);
+  const [anchorEl1, setAnchorEl1] = React.useState(null);
+  const [anchorEl2, setAnchorEl2] = React.useState(null);
+  function handleClick1(e) {
+    setAnchorEl1(e.currentTarget);
   }
-  function handleClose() {
-    setAnchorEl(null);
+  function handleClose1() {
+    setAnchorEl1(null);
+  }
+  function handleClick2(e) {
+    setAnchorEl2(e.currentTarget);
+  }
+  function handleClose2() {
+    setAnchorEl2(null);
+  }
+  function onMonth(e) {
+    console.log(e);
+  }
+  function onWeek(e) {
+    console.log(e);
+  }
+  function onDay(e) {
+    console.log(e);
+  }
+  function onChange(e) {
+    console.log(e);
   }
   return (
     <div className={classes.container}>
@@ -40,18 +59,18 @@ const NavBar = props => {
         <Toolbar className={classes.toolbar}>
           <Button
             className={classes.button}
-            aria-controls="simple-menu"
+            aria-controls="simple-menu1"
             aria-haspopup="true"
-            onClick={handleClick}
+            onClick={handleClick1}
           >
             Calendar
           </Button>
           <Menu
-            id="simple-menu"
-            anchorEl={anchorEl}
+            id="simple-menu1"
+            anchorEl={anchorEl1}
             keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
+            open={Boolean(anchorEl1)}
+            onClose={handleClose1}
           >
             <MenuItem>
               <Calendar
@@ -59,10 +78,37 @@ const NavBar = props => {
                 showWeekNumbers
                 selectRange
                 value={new Date()}
+                onClickWeekNumber={onWeek}
+                onClickDay={onDay}
+                // returnValue="range"
+                onChange={onChange}
               />
             </MenuItem>
           </Menu>
-          <Button className={classes.button}>Create Goal</Button>
+          <Button
+            className={classes.button}
+            aria-controls="simple-menu2"
+            aria-haspopup="true"
+            onClick={handleClick2}
+          >
+            Create Goal
+          </Button>
+          <Menu
+            id="simple-menu2"
+            anchorEl={anchorEl2}
+            keepMounted
+            open={Boolean(anchorEl2)}
+            onClose={handleClose2}
+          >
+            <MenuItem>
+              <Calendar
+                view="year"
+                maxDetail="year"
+                minDetail="decade"
+                onClickMonth={onMonth}
+              />
+            </MenuItem>
+          </Menu>
           <h1>Health Logger</h1>
           <h5> Welcome : {props.username}</h5>
           <Button
