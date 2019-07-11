@@ -5,7 +5,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import Calendar from "react-calendar";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const styles = () => ({
   container: {
@@ -44,15 +45,15 @@ const NavBar = props => {
   function onMonth(e) {
     console.log(e);
   }
-  function onWeek(e) {
-    console.log(e);
-  }
-  function onDay(e) {
-    console.log(e);
-  }
-  function onChange(e) {
-    console.log(e);
-  }
+  // function onWeek(e) {
+  //   console.log(e);
+  // }
+  // function onDay(e) {
+  //   console.log(e);
+  // }
+  // function onChange(e) {
+  //   console.log(e);
+  // }
   return (
     <div className={classes.container}>
       <AppBar position="static">
@@ -73,16 +74,7 @@ const NavBar = props => {
             onClose={handleClose1}
           >
             <MenuItem>
-              <Calendar
-                view="month"
-                showWeekNumbers
-                selectRange
-                value={new Date()}
-                onClickWeekNumber={onWeek}
-                onClickDay={onDay}
-                // returnValue="range"
-                onChange={onChange}
-              />
+              <DatePicker inline selected={new Date()} />
             </MenuItem>
           </Menu>
           <Button
@@ -101,11 +93,17 @@ const NavBar = props => {
             onClose={handleClose2}
           >
             <MenuItem>
-              <Calendar
+              {/* <Calendar
                 view="year"
                 maxDetail="year"
                 minDetail="decade"
-                onClickMonth={onMonth}
+                onClickMonth={props.onMonth}
+              /> */}
+              <DatePicker
+                showMonthYearPicker
+                inline
+                onChange={props.onMonth}
+                // onChange={props.onMonth}
               />
             </MenuItem>
           </Menu>

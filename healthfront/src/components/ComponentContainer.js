@@ -46,6 +46,13 @@ class ComponentContainer extends Component {
     this.props.logOut();
     this.props.history.push("/login");
   };
+
+  onMonth = e => {
+    console.log(typeof e);
+    console.log(e);
+    let cMonthValue = e.toString().split(" ");
+    console.log(cMonthValue);
+  };
   render() {
     const { classes } = this.props;
     return (
@@ -54,6 +61,7 @@ class ComponentContainer extends Component {
           signOut={this.signOut}
           id={this.state.id}
           username={this.state.username}
+          onMonth={this.onMonth}
         />
         <div>App</div>
         <CreateGoal />
