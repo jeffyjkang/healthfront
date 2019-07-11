@@ -4,12 +4,24 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter as Router } from "react-router-dom";
+//
+import { Provider } from "react-redux";
+import { applyMiddleware, createStore } from "redux";
+import logger from "redux-logger";
+import thunk from "redux-thunk";
+import combineReducers from "./reducers/index";
+//
 require("dotenv").config();
 
+//
+const store = createStore(combineReducers, applyMiddleware(thunk, logger));
+
 ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
+  <Provider store={store}>
+    <Router>
+      <App />
+    </Router>
+  </Provider>,
   document.getElementById("root")
 );
 

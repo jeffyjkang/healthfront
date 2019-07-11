@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import NavBar from "./navbar/NavBar";
 import { withStyles } from "@material-ui/core/styles";
 //
+import CreateGoal from "./goalComponents/CreateGoal";
+//
 import jwt from "jsonwebtoken";
 const secret = process.env.REACT_APP_SECRET;
 
@@ -54,6 +56,7 @@ class ComponentContainer extends Component {
           username={this.state.username}
         />
         <div>App</div>
+        <CreateGoal />
       </div>
     );
   }
