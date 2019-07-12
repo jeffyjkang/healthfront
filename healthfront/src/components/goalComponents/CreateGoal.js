@@ -28,10 +28,11 @@ const styles = () => ({
   button: {
     float: "right",
     margin: 10,
-    height: 100,
-    width: 150,
-    marginTop: 65,
-    fontSize: 25
+    height: 60,
+    width: 100,
+    marginTop: 40,
+    marginRight: 25,
+    fontSize: 15
   }
 });
 
@@ -128,8 +129,8 @@ class CreateGoal extends Component {
                   label="Miscelaneous Goal for the month."
                   variant="outlined"
                   multiline={true}
-                  rows={10}
-                  rowsMax={10}
+                  rows={5}
+                  rowsMax={5}
                 />
               </Grid>
               <Grid item xs={4}>
