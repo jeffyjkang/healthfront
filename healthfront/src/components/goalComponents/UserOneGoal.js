@@ -8,13 +8,13 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import AddIcon from "@material-ui/icons/Add";
 import EditIcon from "@material-ui/icons/Edit";
 
 const styles = () => ({
   container: {
     border: "1px solid blue",
     height: 100,
-    // background: "pink",
     display: "flex",
     justifyContent: "center",
     alignItems: "center"
@@ -24,6 +24,9 @@ const styles = () => ({
   },
   headerContainer: {
     margin: "auto"
+  },
+  dateContainer: {
+    textAlign: "center"
   },
   weightContainer: {
     textAlign: "center",
@@ -41,17 +44,24 @@ const UserOneGoal = props => {
     <div className={classes.container}>
       <Paper className={classes.paper}>
         <Grid className={classes.headerContainer} container>
-          <Grid item xs={4}>
+          <Grid item xs={3}>
+            <Button variant="contained" color="primary">
+              <AddIcon />
+              {"    "}
+              <Typography variant="button">Add Plan</Typography>
+            </Button>
+          </Grid>
+          <Grid className={classes.dateContainer} item xs={3}>
             <Typography variant="h6">{props.userOneGoal.date}</Typography>
           </Grid>
-          <Grid className={classes.weightContainer} item xs={4}>
+          <Grid className={classes.weightContainer} item xs={3}>
             <Typography variant="subtitle2">
               Weight: {props.userOneGoal.weight}
             </Typography>
           </Grid>
-          <Grid className={classes.buttonContainer} item xs={4}>
+          <Grid className={classes.buttonContainer} item xs={3}>
             <Button variant="contained" color="primary">
-              <Typography variant="button">Edit</Typography>
+              <Typography variant="button">Edit Goal</Typography>
               {"    "}
               <EditIcon />
             </Button>
