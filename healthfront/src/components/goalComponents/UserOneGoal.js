@@ -4,9 +4,11 @@ import Paper from "@material-ui/core/Paper";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import EditIcon from "@material-ui/icons/Edit";
 
 const styles = () => ({
   container: {
@@ -19,6 +21,16 @@ const styles = () => ({
   },
   paper: {
     width: "90%"
+  },
+  headerContainer: {
+    margin: "auto"
+  },
+  weightContainer: {
+    textAlign: "center",
+    marginTop: 5
+  },
+  buttonContainer: {
+    textAlign: "end"
   }
 });
 
@@ -28,7 +40,23 @@ const UserOneGoal = props => {
   return (
     <div className={classes.container}>
       <Paper className={classes.paper}>
-        <Typography variant="h6">{props.userOneGoal.date}</Typography>
+        <Grid className={classes.headerContainer} container>
+          <Grid item xs={4}>
+            <Typography variant="h6">{props.userOneGoal.date}</Typography>
+          </Grid>
+          <Grid className={classes.weightContainer} item xs={4}>
+            <Typography variant="subtitle2">
+              Weight: {props.userOneGoal.weight}
+            </Typography>
+          </Grid>
+          <Grid className={classes.buttonContainer} item xs={4}>
+            <Button variant="contained" color="primary">
+              <Typography variant="button">Edit</Typography>
+              {"    "}
+              <EditIcon />
+            </Button>
+          </Grid>
+        </Grid>
         <Grid container>
           <Grid item xs={3}>
             <ExpansionPanel>

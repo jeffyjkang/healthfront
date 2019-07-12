@@ -7,6 +7,8 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Typography from "@material-ui/core/Typography";
 import DatePicker from "react-datepicker";
+import CreateNewFolderIcon from "@material-ui/icons/CreateNewFolder";
+import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import "react-datepicker/dist/react-datepicker.css";
 
 const styles = () => ({
@@ -84,7 +86,8 @@ const NavBar = props => {
             aria-haspopup="true"
             onClick={handleClick2}
           >
-            <Typography variant="button">Create Goal</Typography>
+            <Typography variant="button">Create Goal </Typography>
+            {"  "} <CreateNewFolderIcon />
           </Button>
           <Menu
             id="simple-menu2"
@@ -117,6 +120,8 @@ const NavBar = props => {
             onClick={props.signOut}
           >
             <Typography variant="button">Sign Out</Typography>
+            {"  "}
+            <PersonOutlineIcon />
           </Button>
         </Toolbar>
       </AppBar>

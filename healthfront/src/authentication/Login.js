@@ -5,6 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import PersonIcon from "@material-ui/icons/Person";
 //
 const styles = () => ({
   container: {
@@ -87,6 +88,8 @@ class Login extends Component {
             className={classes.button}
           >
             <Typography variant="button">Login</Typography>
+            {"  "}
+            <PersonIcon />
           </Button>
         </form>
       </div>
