@@ -4,7 +4,6 @@ import Grid from "@material-ui/core/Grid";
 import UserOneGoalsContainer from "../goalComponents/UserOneGoalsContainer";
 import UserTwoGoalsContainer from "../goalComponents/UserTwoGoalsContainer";
 
-
 const styles = () => ({
   container: {
     minWidth: "95vw",
@@ -23,7 +22,7 @@ class PageContainer extends Component {
   render() {
     const { classes } = this.props;
 
-    console.log(this.props);
+    // console.log(this.props);
 
     return (
       <div className={classes.container}>

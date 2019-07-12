@@ -5,6 +5,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import Typography from "@material-ui/core/Typography";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -64,7 +65,7 @@ const NavBar = props => {
             aria-haspopup="true"
             onClick={handleClick1}
           >
-            Calendar
+            <Typography variant="button">Calendar</Typography>
           </Button>
           <Menu
             id="simple-menu1"
@@ -83,7 +84,7 @@ const NavBar = props => {
             aria-haspopup="true"
             onClick={handleClick2}
           >
-            Create Goal
+            <Typography variant="button">Create Goal</Typography>
           </Button>
           <Menu
             id="simple-menu2"
@@ -107,15 +108,15 @@ const NavBar = props => {
               />
             </MenuItem>
           </Menu>
-          <h1>Health Logger</h1>
-          <h5> Welcome : {props.username}</h5>
+          <Typography variant="h3">Health Logger</Typography>
+          <Typography variant="h6">Welcome : {props.username}</Typography>
           <Button
             className={classes.button}
             variant="contained"
             color="primary"
             onClick={props.signOut}
           >
-            Sign Out
+            <Typography variant="button">Sign Out</Typography>
           </Button>
         </Toolbar>
       </AppBar>
