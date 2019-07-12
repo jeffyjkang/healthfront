@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
+import UserOneGoalsContainer from "../goalComponents/UserOneGoalsContainer";
+import UserTwoGoalsContainer from "../goalComponents/UserTwoGoalsContainer";
+
 
 const styles = () => ({
   container: {
@@ -19,14 +22,17 @@ class PageContainer extends Component {
   }
   render() {
     const { classes } = this.props;
+
+    console.log(this.props);
+
     return (
       <div className={classes.container}>
         <Grid container>
           <Grid className={classes.userContainer} item xs={6}>
-            user1
+            <UserOneGoalsContainer userOneGoals={this.props.userOneGoals} />
           </Grid>
           <Grid className={classes.userContainer} item xs={6}>
-            user2
+            <UserTwoGoalsContainer userTwoGoals={this.props.userTwoGoals} />
           </Grid>
         </Grid>
       </div>
