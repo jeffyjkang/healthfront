@@ -4,6 +4,7 @@ import Axios from "axios";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 //
 const styles = () => ({
   container: {
@@ -55,8 +56,8 @@ class Login extends Component {
     return (
       <div>
         <form className={classes.container} onSubmit={this.loginSubmit}>
-          <h1>Health Logger</h1>
-          <h3>Login</h3>
+          <Typography variant="h3">Health Logger</Typography>
+          <Typography variant="h6">Login</Typography>
           <TextField
             className={classes.textField}
             name="usernameInput"
@@ -85,7 +86,7 @@ class Login extends Component {
             color="primary"
             className={classes.button}
           >
-            Login
+            <Typography variant="button">Login</Typography>
           </Button>
         </form>
       </div>

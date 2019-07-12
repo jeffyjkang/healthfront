@@ -50,8 +50,8 @@ class ComponentContainer extends Component {
                 userTwoGoals.push(goals[i]);
               }
             }
-            console.log("u1g", userOneGoals);
-            console.log("u2g", userTwoGoals);
+            // console.log("u1g", userOneGoals);
+            // console.log("u2g", userTwoGoals);
             this.setState({
               ...this.state,
               id: decodedToken.id,
