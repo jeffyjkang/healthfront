@@ -42,9 +42,9 @@ const NavBar = props => {
   function handleClose2() {
     setAnchorEl2(null);
   }
-  function onMonth(e) {
-    console.log(e);
-  }
+  // function onMonth(e) {
+  //   console.log(e);
+  // }
   // function onWeek(e) {
   //   console.log(e);
   // }
@@ -74,7 +74,7 @@ const NavBar = props => {
             onClose={handleClose1}
           >
             <MenuItem>
-              <DatePicker inline selected={new Date()} />
+              <DatePicker inline readOnly={true} selected={new Date()} />
             </MenuItem>
           </Menu>
           <Button

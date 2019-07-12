@@ -19,6 +19,7 @@ const Authenticate = ComponentContainer => Login =>
       }
     }
     logOut = () => {
+      localStorage.removeItem("token");
       this.setState({ loggedIn: false });
     };
     refresh = () => {
