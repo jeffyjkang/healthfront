@@ -7,10 +7,10 @@ import UserTwoGoalsContainer from "../goalComponents/UserTwoGoalsContainer";
 const styles = () => ({
   container: {
     minWidth: "95vw",
-    border: "1px solid blue"
+    border: "1px solid #3F51B5"
   },
   userContainer: {
-    border: "1px solid blue"
+    border: "1px solid #3F51B5"
   }
 });
 
