@@ -38,21 +38,17 @@ const styles = () => ({
 class CreateGoal extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      open: true
-    };
+    this.state = {};
   }
-  handleClose = () => {
-    this.setState({ open: false });
-  };
+
   render() {
     const { classes } = this.props;
     return (
       <div>
         <Dialog
           maxWidth={"md"}
-          open={this.state.open}
-          onClose={this.handleClose}
+          open={this.props.createGoalOpen}
+          onClose={this.props.handleCloseGoal}
           aria-labelledby="create-goal-title"
         >
           <DialogTitle id="create-goal-title">Create Monthly Goal</DialogTitle>
@@ -61,7 +57,9 @@ class CreateGoal extends Component {
               <Grid item xs={6}>
                 <Chip
                   className={classes.dateChip}
-                  label="Year: Year, Month: Month"
+                  label={`Year: ${
+                    this.props.cMonthValue.split(" ")[1]
+                  }, Month: ${this.props.cMonthValue.split(" ")[0]}`}
                   variant="outlined"
                 />
               </Grid>
