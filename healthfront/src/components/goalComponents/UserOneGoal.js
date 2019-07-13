@@ -60,7 +60,11 @@ const UserOneGoal = props => {
             </Typography>
           </Grid>
           <Grid className={classes.buttonContainer} item xs={3}>
-            <Button variant="contained" color="primary">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => props.handleOpenEditGoal(props.userOneGoal)}
+            >
               <Typography variant="button">Edit Goal</Typography>
               {"    "}
               <EditIcon />

@@ -39,7 +39,7 @@ const styles = () => ({
 
 const UserTwoGoal = props => {
   const { classes } = props;
-  // console.log(props);
+  console.log(props);
   return (
     <div className={classes.container}>
       <Paper className={classes.paper}>
@@ -60,7 +60,11 @@ const UserTwoGoal = props => {
             </Typography>
           </Grid>
           <Grid className={classes.buttonContainer} item xs={3}>
-            <Button variant="contained" color="primary">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => props.handleOpenEditGoal(props.userTwoGoal)}
+            >
               <Typography variant="button">Edit Goal</Typography>
               {"    "}
               <EditIcon />

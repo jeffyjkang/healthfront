@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import UserOneGoalsContainer from "../goalComponents/UserOneGoalsContainer";
@@ -14,29 +14,29 @@ const styles = () => ({
   }
 });
 
-class PageContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  render() {
-    const { classes } = this.props;
+const PageContainer = props => {
+  const { classes } = props;
 
-    // console.log(this.props);
+  // console.log(props);
 
-    return (
-      <div className={classes.container}>
-        <Grid container>
-          <Grid className={classes.userContainer} item xs={6}>
-            <UserOneGoalsContainer userOneGoals={this.props.userOneGoals} />
-          </Grid>
-          <Grid className={classes.userContainer} item xs={6}>
-            <UserTwoGoalsContainer userTwoGoals={this.props.userTwoGoals} />
-          </Grid>
+  return (
+    <div className={classes.container}>
+      <Grid container>
+        <Grid className={classes.userContainer} item xs={6}>
+          <UserOneGoalsContainer
+            userOneGoals={props.userOneGoals}
+            handleOpenEditGoal={props.handleOpenEditGoal}
+          />
         </Grid>
-      </div>
-    );
-  }
-}
+        <Grid className={classes.userContainer} item xs={6}>
+          <UserTwoGoalsContainer
+            userTwoGoals={props.userTwoGoals}
+            handleOpenEditGoal={props.handleOpenEditGoal}
+          />
+        </Grid>
+      </Grid>
+    </div>
+  );
+};
 
 export default withStyles(styles)(PageContainer);

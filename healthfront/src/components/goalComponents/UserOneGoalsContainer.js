@@ -13,7 +13,11 @@ const UserOneGoalsContainer = props => {
   return (
     <div className={classes.container}>
       {props.userOneGoals.map(userOneGoal => (
-        <UserOneGoal key={Math.random()} userOneGoal={userOneGoal} />
+        <UserOneGoal
+          key={Math.random()}
+          userOneGoal={userOneGoal}
+          handleOpenEditGoal={props.handleOpenEditGoal}
+        />
       ))}
     </div>
   );
