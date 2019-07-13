@@ -17,6 +17,7 @@ const UserOneGoalsContainer = props => {
           key={Math.random()}
           userOneGoal={userOneGoal}
           handleOpenEditGoal={props.handleOpenEditGoal}
+          handleOpenCreatePlan={props.handleOpenCreatePlan}
         />
       ))}
     </div>

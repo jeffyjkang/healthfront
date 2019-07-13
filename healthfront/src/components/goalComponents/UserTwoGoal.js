@@ -45,7 +45,11 @@ const UserTwoGoal = props => {
       <Paper className={classes.paper}>
         <Grid className={classes.headerContainer} container>
           <Grid item xs={3}>
-            <Button variant="contained" color="primary">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => props.handleOpenCreatePlan(props.userTwoGoal)}
+            >
               <AddIcon />
               {"    "}
               <Typography variant="button">Add Plan</Typography>
