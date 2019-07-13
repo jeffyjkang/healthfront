@@ -3,6 +3,7 @@ import NavBar from "./navbar/NavBar";
 import { withStyles } from "@material-ui/core/styles";
 //
 import CreateGoal from "./goalComponents/CreateGoal";
+import EditGoal from "./goalComponents/EditGoal";
 import PageContainer from "./pageComponents/PageContainer";
 //
 import jwt from "jsonwebtoken";
@@ -28,7 +29,8 @@ class ComponentContainer extends Component {
       editGoalOpen: false,
       cMonthValue: "",
       userOneGoals: [],
-      userTwoGoals: []
+      userTwoGoals: [],
+      currentGoal: {}
     };
   }
   componentDidMount() {
@@ -77,24 +79,31 @@ class ComponentContainer extends Component {
     this.props.logOut();
     this.props.history.push("/login");
   };
-
+  // create goal
   onMonth = e => {
     let cMonthValue = e.toString().split(" ");
     cMonthValue = `${cMonthValue[1]} ${cMonthValue[3]}`;
     this.setState({ ...this.state, cMonthValue, createGoalOpen: true });
   };
-  //
   handleCloseCreateGoal = () => {
     this.setState({ ...this.state, createGoalOpen: false });
   };
-  //
+  // edit goal
   handleOpenEditGoal = goal => {
-    console.log("goal", goal);
-    console.log("fired");
+    if (this.state.id !== goal.userId) {
+      return alert("You are not authorized to modify another user's goals.");
+    } else {
+      this.setState({
+        ...this.state,
+        currentGoal: goal,
+        editGoalOpen: true
+      });
+    }
   };
   handleCloseEditGoal = () => {
     this.setState({ ...this.state, editGoalOpen: false });
   };
+  //
   render() {
     const { classes } = this.props;
     return (
@@ -110,6 +119,12 @@ class ComponentContainer extends Component {
           cMonthValue={this.state.cMonthValue}
           createGoalOpen={this.state.createGoalOpen}
           handleCloseCreateGoal={this.handleCloseCreateGoal}
+          refresh={this.refresh}
+        />
+        <EditGoal
+          currentGoal={this.state.currentGoal}
+          editGoalOpen={this.state.editGoalOpen}
+          handleCloseEditGoal={this.handleCloseEditGoal}
           refresh={this.refresh}
         />
         <PageContainer
