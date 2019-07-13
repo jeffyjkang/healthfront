@@ -46,10 +46,10 @@ class ComponentContainer extends Component {
             const userOneGoals = [];
             const userTwoGoals = [];
             for (let i = goals.length - 1; i >= 0; i--) {
-              if (goals[i].userId === 3) {
+              if (goals[i].userId === 1) {
                 userOneGoals.push(goals[i]);
               }
-              if (goals[i].userId === 4) {
+              if (goals[i].userId === 2) {
                 userTwoGoals.push(goals[i]);
               }
             }
@@ -77,7 +77,6 @@ class ComponentContainer extends Component {
     e.preventDefault();
     localStorage.removeItem("token");
     this.props.logOut();
-    this.props.history.push("/login");
   };
   // create goal
   onMonth = e => {

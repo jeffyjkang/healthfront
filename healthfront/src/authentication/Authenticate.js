@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
 
 const Authenticate = ComponentContainer => Login =>
   class extends Component {
@@ -12,10 +11,8 @@ const Authenticate = ComponentContainer => Login =>
     componentDidMount() {
       if (localStorage.getItem("token")) {
         this.setState({ loggedIn: true });
-        this.props.history.push("/");
       } else {
         this.setState({ loggedIn: false });
-        this.props.history.push("/login");
       }
     }
     logOut = () => {
@@ -29,17 +26,9 @@ const Authenticate = ComponentContainer => Login =>
       return (
         <div>
           {this.state.loggedIn ? (
-            <Route
-              path="/"
-              render={props => (
-                <ComponentContainer {...props} logOut={this.logOut} />
-              )}
-            />
+            <ComponentContainer logOut={this.logOut} />
           ) : (
-            <Route
-              path="/login"
-              render={props => <Login {...props} refresh={this.refresh} />}
-            />
+            <Login refresh={this.refresh} />
           )}
         </div>
       );
