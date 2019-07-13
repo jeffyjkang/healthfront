@@ -12,6 +12,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Typography from "@material-ui/core/Typography";
 import AddBoxIcon from "@material-ui/icons/AddBox";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const styles = () => ({
   container: {
@@ -38,11 +39,10 @@ const styles = () => ({
   }
 });
 
-class CreateGoal extends Component {
+class EditGoal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      weightInput: "",
       exerciseGoalInput: "",
       foodGoalInput: "",
       sleepGoalInput: "",
@@ -54,67 +54,46 @@ class CreateGoal extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  submitCreateGoal = () => {
-    const token = localStorage.getItem("token");
-    const newGoal = {
-      date: this.props.cMonthValue,
-      weight: this.state.weightInput,
-      exerciseGoal: this.state.exerciseGoalInput,
-      foodGoal: this.state.foodGoalInput,
-      sleepGoal: this.state.sleepGoalInput,
-      miscGoal: this.state.miscGoalInput
-    };
-    const auth = { headers: { authorization: token } };
-    Axios.post("http://localhost:9000/goal", newGoal, auth)
-      .then(res => {
-        console.log(res.status);
-        this.setState({
-          weightInput: "",
-          exerciseGoalInput: "",
-          foodGoalInput: "",
-          sleepGoalInput: "",
-          miscGoalInput: ""
-        });
-      })
-      .catch(error => console.log(error));
-    this.props.refresh();
-    this.props.handleCloseCreateGoal();
-  };
-
   render() {
     const { classes } = this.props;
     return (
       <div>
         <Dialog
           maxWidth={"md"}
-          open={this.props.createGoalOpen}
-          onClose={this.props.handleCloseCreateGoal}
-          aria-labelledby="create-goal-title"
+          open={this.props.editGoalOpen}
+          onClose={this.props.handleCloseEditGoal}
+          aria-labelledby="edit-goal-title"
         >
-          <DialogTitle id="create-goal-title">Create Monthly Goal</DialogTitle>
+          <DialogTitle id="edit-goal-title">Edit Monthly Goal</DialogTitle>
           <DialogContent>
             <Grid container>
-              <Grid item xs={6}>
+              <Grid item xs={4}>
                 <Chip
                   className={classes.dateChip}
-                  label={`Year: ${
-                    this.props.cMonthValue.split(" ")[1]
-                  }, Month: ${this.props.cMonthValue.split(" ")[0]}`}
+                  label={`Year: ${this.props.date.split(" ")[1]}, Month: ${
+                    this.props.date.split(" ")[0]
+                  }`}
                   variant="outlined"
                 />
               </Grid>
-              <Grid item xs={6}>
-                <TextField
-                  className={classes.weightField}
-                  autoFocus
-                  type="number"
-                  label="Current Weight"
-                  variant="outlined"
-                  margin="dense"
-                  name="weightInput"
-                  value={this.state.weightInput}
-                  onChange={this.editFormHandler}
+              <Grid item xs={4}>
+                <Chip
+                  className={classes.dateChip}
+                  label={`Initial Weight: ${this.props.weight}`}
                 />
+              </Grid>
+              <Grid item xs={4}>
+                <DialogActions>
+                  <Button
+                    className={classes.button}
+                    variant="contained"
+                    color="secondary"
+                  >
+                    <Typography variant="button">Delete Goal</Typography>
+                    {"  "}
+                    <DeleteIcon />
+                  </Button>
+                </DialogActions>
               </Grid>
             </Grid>
             <Grid container>
@@ -124,7 +103,7 @@ class CreateGoal extends Component {
                   //   fullWidth
                   autoFocus
                   type="string"
-                  label="Exercise Goal for the month."
+                  label="Update Exercise Goal."
                   variant="outlined"
                   multiline={true}
                   rows={10}
@@ -141,7 +120,7 @@ class CreateGoal extends Component {
                   //   fullWidth
                   autoFocus
                   type="string"
-                  label="Food Goal for the month."
+                  label="Update Food Goal."
                   variant="outlined"
                   multiline={true}
                   rows={10}
@@ -158,7 +137,7 @@ class CreateGoal extends Component {
                   //   fullWidth
                   autoFocus
                   type="string"
-                  label="Sleep Goal for the month."
+                  label="Update Sleep Goal."
                   variant="outlined"
                   multiline={true}
                   rows={10}
@@ -177,7 +156,7 @@ class CreateGoal extends Component {
                   fullWidth
                   autoFocus
                   type="string"
-                  label="Miscellaneous Goal for the month."
+                  label="Update Miscellaneous Goal."
                   variant="outlined"
                   multiline={true}
                   rows={5}
@@ -193,9 +172,9 @@ class CreateGoal extends Component {
                     className={classes.button}
                     variant="contained"
                     color="primary"
-                    onClick={this.submitCreateGoal}
+                    onClick={this.submitUpdateGoal}
                   >
-                    <Typography variant="button">Submit Goal</Typography>
+                    <Typography variant="button">Update Goal</Typography>
                     {"  "}
                     <AddBoxIcon />
                   </Button>
@@ -209,4 +188,4 @@ class CreateGoal extends Component {
   }
 }
 
-export default withStyles(styles)(CreateGoal);
+export default withStyles(styles)(EditGoal);

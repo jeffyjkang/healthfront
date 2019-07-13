@@ -25,6 +25,7 @@ class ComponentContainer extends Component {
       id: "",
       username: "",
       createGoalOpen: false,
+      editGoalOpen: false,
       cMonthValue: "",
       userOneGoals: [],
       userTwoGoals: []
@@ -82,9 +83,17 @@ class ComponentContainer extends Component {
     cMonthValue = `${cMonthValue[1]} ${cMonthValue[3]}`;
     this.setState({ ...this.state, cMonthValue, createGoalOpen: true });
   };
-
-  handleCloseGoal = () => {
+  //
+  handleCloseCreateGoal = () => {
     this.setState({ ...this.state, createGoalOpen: false });
+  };
+  //
+  handleOpenEditGoal = goal => {
+    console.log("goal", goal);
+    console.log("fired");
+  };
+  handleCloseEditGoal = () => {
+    this.setState({ ...this.state, editGoalOpen: false });
   };
   render() {
     const { classes } = this.props;
@@ -100,12 +109,13 @@ class ComponentContainer extends Component {
         <CreateGoal
           cMonthValue={this.state.cMonthValue}
           createGoalOpen={this.state.createGoalOpen}
-          handleCloseGoal={this.handleCloseGoal}
+          handleCloseCreateGoal={this.handleCloseCreateGoal}
           refresh={this.refresh}
         />
         <PageContainer
           userOneGoals={this.state.userOneGoals}
           userTwoGoals={this.state.userTwoGoals}
+          handleOpenEditGoal={this.handleOpenEditGoal}
         />
       </div>
     );
