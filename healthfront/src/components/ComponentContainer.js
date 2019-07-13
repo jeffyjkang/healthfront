@@ -31,7 +31,7 @@ class ComponentContainer extends Component {
     };
   }
   componentDidMount() {
-    let token = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
     if (token) {
       jwt.verify(token, secret, (error, decodedToken) => {
         if (error) {
@@ -66,6 +66,10 @@ class ComponentContainer extends Component {
     }
   }
 
+  refresh = () => {
+    this.componentDidMount();
+  };
+
   signOut = e => {
     e.preventDefault();
     localStorage.removeItem("token");
@@ -97,6 +101,7 @@ class ComponentContainer extends Component {
           cMonthValue={this.state.cMonthValue}
           createGoalOpen={this.state.createGoalOpen}
           handleCloseGoal={this.handleCloseGoal}
+          refresh={this.refresh}
         />
         <PageContainer
           userOneGoals={this.state.userOneGoals}

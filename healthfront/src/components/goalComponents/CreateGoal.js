@@ -10,6 +10,8 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import Typography from "@material-ui/core/Typography";
+import AddBoxIcon from "@material-ui/icons/AddBox";
 
 const styles = () => ({
   container: {
@@ -29,7 +31,7 @@ const styles = () => ({
     float: "right",
     margin: 10,
     height: 60,
-    width: 100,
+    width: 140,
     marginTop: 40,
     marginRight: 25,
     fontSize: 15
@@ -39,11 +41,50 @@ const styles = () => ({
 class CreateGoal extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      weightInput: "",
+      exerciseGoalInput: "",
+      foodGoalInput: "",
+      sleepGoalInput: "",
+      miscGoalInput: ""
+    };
   }
+
+  editFormHandler = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  submitCreateGoal = () => {
+    console.log("fired");
+    const token = localStorage.getItem("token");
+    const newGoal = {
+      date: this.props.cMonthValue,
+      weight: this.state.weightInput,
+      exerciseGoal: this.state.exerciseGoalInput,
+      foodGoal: this.state.foodGoalInput,
+      sleepGoal: this.state.sleepGoalInput,
+      miscGoal: this.state.miscGoalInput
+    };
+    const auth = { headers: { authorization: token } };
+    Axios.post("http://localhost:9000/goal", newGoal, auth)
+      .then(res => {
+        console.log(res.status);
+        this.setState({
+          weightInput: "",
+          exerciseGoalInput: "",
+          foodGoalInput: "",
+          sleepGoalInput: "",
+          miscGoalInput: ""
+        });
+      })
+      .catch(error => console.log(error));
+    this.props.refresh();
+    this.props.handleCloseGoal();
+  };
 
   render() {
     const { classes } = this.props;
+    console.log(this.props);
     return (
       <div>
         <Dialog
@@ -72,6 +113,9 @@ class CreateGoal extends Component {
                   label="Current Weight"
                   variant="outlined"
                   margin="dense"
+                  name="weightInput"
+                  value={this.state.weightInput}
+                  onChange={this.editFormHandler}
                 />
               </Grid>
             </Grid>
@@ -88,6 +132,9 @@ class CreateGoal extends Component {
                   rows={10}
                   rowsMax={10}
                   margin="dense"
+                  name="exerciseGoalInput"
+                  value={this.state.exerciseGoalInput}
+                  onChange={this.editFormHandler}
                 />
               </Grid>
               <Grid item xs={4}>
@@ -102,6 +149,9 @@ class CreateGoal extends Component {
                   rows={10}
                   rowsMax={10}
                   margin="dense"
+                  name="foodGoalInput"
+                  value={this.state.foodGoalInput}
+                  onChange={this.editFormHandler}
                 />
               </Grid>
               <Grid item xs={4}>
@@ -116,6 +166,9 @@ class CreateGoal extends Component {
                   rows={10}
                   rowsMax={10}
                   margin="dense"
+                  name="sleepGoalInput"
+                  value={this.state.sleepGoalInput}
+                  onChange={this.editFormHandler}
                 />
               </Grid>
             </Grid>
@@ -131,16 +184,24 @@ class CreateGoal extends Component {
                   multiline={true}
                   rows={5}
                   rowsMax={5}
+                  name="miscGoalInput"
+                  value={this.state.miscGoalInput}
+                  onChange={this.editFormHandler}
                 />
               </Grid>
               <Grid item xs={4}>
-                <Button
-                  className={classes.button}
-                  variant="contained"
-                  color="primary"
-                >
-                  Submit Goal
-                </Button>
+                <DialogActions>
+                  <Button
+                    className={classes.button}
+                    variant="contained"
+                    color="primary"
+                    onClick={this.submitCreateGoal}
+                  >
+                    <Typography variant="button">Submit Goal</Typography>
+                    {"  "}
+                    <AddBoxIcon />
+                  </Button>
+                </DialogActions>
               </Grid>
             </Grid>
           </DialogContent>
