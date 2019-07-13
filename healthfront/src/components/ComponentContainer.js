@@ -6,6 +6,8 @@ import CreateGoal from "./goalComponents/CreateGoal";
 import EditGoal from "./goalComponents/EditGoal";
 import PageContainer from "./pageComponents/PageContainer";
 //
+import CreatePlan from "./planComponents/CreatePlan";
+//
 import jwt from "jsonwebtoken";
 import Axios from "axios";
 const secret = process.env.REACT_APP_SECRET;
@@ -25,12 +27,16 @@ class ComponentContainer extends Component {
     this.state = {
       id: "",
       username: "",
+      //
       createGoalOpen: false,
       editGoalOpen: false,
       cMonthValue: "",
       userOneGoals: [],
       userTwoGoals: [],
-      currentGoal: {}
+      currentGoal: {},
+      //
+      createPlanOpen: false,
+      cGoalId: ""
     };
   }
   componentDidMount() {
@@ -102,7 +108,18 @@ class ComponentContainer extends Component {
   handleCloseEditGoal = () => {
     this.setState({ ...this.state, editGoalOpen: false });
   };
-  //
+  // create plan
+  handleOpenCreatePlan = goal => {
+    if (this.state.id !== goal.userId) {
+      return alert("You are not authorized to add another user's weekly plan.");
+    } else {
+      const cGoalId = goal.id;
+      this.setState({ ...this.state, cGoalId, createPlanOpen: true });
+    }
+  };
+  handleCloseCreatePlan = () => {
+    this.setState({ ...this.state, createPlanOpen: false });
+  };
   render() {
     const { classes } = this.props;
     return (
@@ -130,6 +147,13 @@ class ComponentContainer extends Component {
           userOneGoals={this.state.userOneGoals}
           userTwoGoals={this.state.userTwoGoals}
           handleOpenEditGoal={this.handleOpenEditGoal}
+          handleOpenCreatePlan={this.handleOpenCreatePlan}
+        />
+        <CreatePlan
+          cGoalId={this.state.cGoalId}
+          createPlanOpen={this.state.createPlanOpen}
+          handleCloseCreatePlan={this.handleCloseCreatePlan}
+          refresh={this.refresh}
         />
       </div>
     );
