@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Axios from "axios";
+import DeleteGoal from "./DeleteGoal";
 //
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -49,12 +50,14 @@ class EditGoal extends Component {
       exerciseGoalInput: "",
       foodGoalInput: "",
       sleepGoalInput: "",
-      miscGoalInput: ""
+      miscGoalInput: "",
+      deleteGoalOpen: false
     };
   }
 
   onEnterGoalEdit = () => {
     this.setState({
+      ...this.state,
       exerciseGoalInput: this.props.currentGoal.exerciseGoal,
       foodGoalInput: this.props.currentGoal.foodGoal,
       sleepGoalInput: this.props.currentGoal.sleepGoal,
@@ -87,12 +90,38 @@ class EditGoal extends Component {
           sleepGoalInput: "",
           miscGoalInput: ""
         });
-        this.props.refresh();
         this.props.handleCloseEditGoal();
+        this.props.refresh();
       })
       .catch(error => console.log(error));
   };
-
+  // delete goal
+  handleOpenDeleteGoal = () => {
+    this.setState({
+      ...this.state,
+      deleteGoalOpen: true
+    });
+  };
+  handleCloseDeleteGoal = () => {
+    this.setState({
+      ...this.state,
+      deleteGoalOpen: false
+    });
+  };
+  submitDeleteGoal = () => {
+    const token = localStorage.getItem("token");
+    const id = this.props.currentGoal.id;
+    const auth = { headers: { authorization: token } };
+    Axios.delete(`http://localhost:9000/goal/${id}`, auth)
+      .then(res => {
+        console.log(res.status);
+        this.handleCloseDeleteGoal();
+        this.props.handleCloseEditGoal();
+        this.props.refresh();
+      })
+      .catch(error => console.log(error));
+  };
+  //
   render() {
     const { classes } = this.props;
     return (
@@ -129,7 +158,11 @@ class EditGoal extends Component {
               </Grid>
               <Grid item xs={4}>
                 <DialogActions>
-                  <Button variant="contained" color="secondary">
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={this.handleOpenDeleteGoal}
+                  >
                     <Typography variant="button">Delete Goal</Typography>
                     {"  "}
                     <DeleteIcon />
@@ -221,6 +254,11 @@ class EditGoal extends Component {
             </Grid>
           </DialogContent>
         </Dialog>
+        <DeleteGoal
+          deleteGoalOpen={this.state.deleteGoalOpen}
+          handleCloseDeleteGoal={this.handleCloseDeleteGoal}
+          submitDeleteGoal={this.submitDeleteGoal}
+        />
       </div>
     );
   }
