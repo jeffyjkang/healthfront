@@ -75,8 +75,8 @@ class CreateGoal extends Component {
           sleepGoalInput: "",
           miscGoalInput: ""
         });
-        this.props.refresh();
         this.props.handleCloseCreateGoal();
+        this.props.refresh();
       })
       .catch(error => console.log(error));
   };
