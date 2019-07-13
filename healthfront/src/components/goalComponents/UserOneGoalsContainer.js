@@ -4,7 +4,7 @@ import UserOneGoal from "./UserOneGoal";
 
 const styles = () => ({
   container: {
-    border: "1px solid blue"
+    border: "1px solid #3F51B5"
   }
 });
 
