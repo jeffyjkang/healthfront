@@ -39,7 +39,7 @@ const styles = () => ({
 
 const UserTwoGoal = props => {
   const { classes } = props;
-  console.log(props);
+  // console.log(props);
   return (
     <div className={classes.container}>
       <Paper className={classes.paper}>

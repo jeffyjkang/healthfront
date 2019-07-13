@@ -75,10 +75,10 @@ class CreateGoal extends Component {
           sleepGoalInput: "",
           miscGoalInput: ""
         });
+        this.props.refresh();
+        this.props.handleCloseCreateGoal();
       })
       .catch(error => console.log(error));
-    this.props.refresh();
-    this.props.handleCloseCreateGoal();
   };
 
   render() {
@@ -106,7 +106,6 @@ class CreateGoal extends Component {
               <Grid item xs={6}>
                 <TextField
                   className={classes.weightField}
-                  autoFocus
                   type="number"
                   label="Current Weight"
                   variant="outlined"
@@ -121,8 +120,6 @@ class CreateGoal extends Component {
               <Grid item xs={4}>
                 <TextField
                   className={classes.textField}
-                  //   fullWidth
-                  autoFocus
                   type="string"
                   label="Exercise Goal for the month."
                   variant="outlined"
@@ -138,8 +135,6 @@ class CreateGoal extends Component {
               <Grid item xs={4}>
                 <TextField
                   className={classes.textField}
-                  //   fullWidth
-                  autoFocus
                   type="string"
                   label="Food Goal for the month."
                   variant="outlined"
@@ -155,8 +150,6 @@ class CreateGoal extends Component {
               <Grid item xs={4}>
                 <TextField
                   className={classes.textField}
-                  //   fullWidth
-                  autoFocus
                   type="string"
                   label="Sleep Goal for the month."
                   variant="outlined"
@@ -175,7 +168,6 @@ class CreateGoal extends Component {
                 <TextField
                   className={classes.textField}
                   fullWidth
-                  autoFocus
                   type="string"
                   label="Miscellaneous Goal for the month."
                   variant="outlined"

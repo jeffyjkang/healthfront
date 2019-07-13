@@ -11,17 +11,20 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Typography from "@material-ui/core/Typography";
-import AddBoxIcon from "@material-ui/icons/AddBox";
+import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 const styles = () => ({
   container: {
     display: "flex"
   },
-  textField: {
+  headerContainer: {
+    marginBottom: 5
+  },
+  chip: {
     margin: 10
   },
-  dateChip: {
+  textField: {
     margin: 10
   },
   weightField: {
@@ -50,8 +53,44 @@ class EditGoal extends Component {
     };
   }
 
+  onEnterGoalEdit = () => {
+    this.setState({
+      exerciseGoalInput: this.props.currentGoal.exerciseGoal,
+      foodGoalInput: this.props.currentGoal.foodGoal,
+      sleepGoalInput: this.props.currentGoal.sleepGoal,
+      miscGoalInput: this.props.currentGoal.miscGoal
+    });
+  };
+
   editFormHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
+  };
+
+  submitUpdateGoal = () => {
+    const token = localStorage.getItem("token");
+    const id = this.props.currentGoal.id;
+    const updatedGoal = {
+      date: this.props.date,
+      weight: this.props.weight,
+      exerciseGoal: this.state.exerciseGoalInput,
+      foodGoal: this.state.foodGoalInput,
+      sleepGoal: this.state.sleepGoalInput,
+      miscGoal: this.state.miscGoalInput
+    };
+    const auth = { headers: { authorization: token } };
+    Axios.put(`http://localhost:9000/goal/${id}`, updatedGoal, auth)
+      .then(res => {
+        console.log(res.status);
+        this.setState({
+          exerciseGoalInput: "",
+          foodGoalInput: "",
+          sleepGoalInput: "",
+          miscGoalInput: ""
+        });
+        this.props.refresh();
+        this.props.handleCloseEditGoal();
+      })
+      .catch(error => console.log(error));
   };
 
   render() {
@@ -63,32 +102,34 @@ class EditGoal extends Component {
           open={this.props.editGoalOpen}
           onClose={this.props.handleCloseEditGoal}
           aria-labelledby="edit-goal-title"
+          onEnter={this.onEnterGoalEdit}
         >
           <DialogTitle id="edit-goal-title">Edit Monthly Goal</DialogTitle>
           <DialogContent>
-            <Grid container>
+            <Grid container className={classes.headerContainer}>
               <Grid item xs={4}>
                 <Chip
-                  className={classes.dateChip}
-                  label={`Year: ${this.props.date.split(" ")[1]}, Month: ${
-                    this.props.date.split(" ")[0]
-                  }`}
+                  className={classes.chip}
+                  label={
+                    this.props.currentGoal.date
+                      ? `Year: ${
+                          this.props.currentGoal.date.split(" ")[1]
+                        }, Month: ${this.props.currentGoal.date.split(" ")[0]}`
+                      : ""
+                  }
                   variant="outlined"
                 />
               </Grid>
               <Grid item xs={4}>
                 <Chip
-                  className={classes.dateChip}
-                  label={`Initial Weight: ${this.props.weight}`}
+                  className={classes.chip}
+                  label={`Initial Weight: ${this.props.currentGoal.weight}`}
+                  variant="outlined"
                 />
               </Grid>
               <Grid item xs={4}>
                 <DialogActions>
-                  <Button
-                    className={classes.button}
-                    variant="contained"
-                    color="secondary"
-                  >
+                  <Button variant="contained" color="secondary">
                     <Typography variant="button">Delete Goal</Typography>
                     {"  "}
                     <DeleteIcon />
@@ -100,8 +141,6 @@ class EditGoal extends Component {
               <Grid item xs={4}>
                 <TextField
                   className={classes.textField}
-                  //   fullWidth
-                  autoFocus
                   type="string"
                   label="Update Exercise Goal."
                   variant="outlined"
@@ -110,6 +149,7 @@ class EditGoal extends Component {
                   rowsMax={10}
                   margin="dense"
                   name="exerciseGoalInput"
+                  placeholder={this.props.currentGoal.exerciseGoal}
                   value={this.state.exerciseGoalInput}
                   onChange={this.editFormHandler}
                 />
@@ -117,8 +157,6 @@ class EditGoal extends Component {
               <Grid item xs={4}>
                 <TextField
                   className={classes.textField}
-                  //   fullWidth
-                  autoFocus
                   type="string"
                   label="Update Food Goal."
                   variant="outlined"
@@ -127,6 +165,7 @@ class EditGoal extends Component {
                   rowsMax={10}
                   margin="dense"
                   name="foodGoalInput"
+                  placeholder={this.props.currentGoal.foodGoal}
                   value={this.state.foodGoalInput}
                   onChange={this.editFormHandler}
                 />
@@ -134,8 +173,6 @@ class EditGoal extends Component {
               <Grid item xs={4}>
                 <TextField
                   className={classes.textField}
-                  //   fullWidth
-                  autoFocus
                   type="string"
                   label="Update Sleep Goal."
                   variant="outlined"
@@ -144,6 +181,7 @@ class EditGoal extends Component {
                   rowsMax={10}
                   margin="dense"
                   name="sleepGoalInput"
+                  placeholder={this.props.currentGoal.sleepGoal}
                   value={this.state.sleepGoalInput}
                   onChange={this.editFormHandler}
                 />
@@ -154,7 +192,6 @@ class EditGoal extends Component {
                 <TextField
                   className={classes.textField}
                   fullWidth
-                  autoFocus
                   type="string"
                   label="Update Miscellaneous Goal."
                   variant="outlined"
@@ -162,6 +199,7 @@ class EditGoal extends Component {
                   rows={5}
                   rowsMax={5}
                   name="miscGoalInput"
+                  placeholder={this.props.currentGoal.miscGoal}
                   value={this.state.miscGoalInput}
                   onChange={this.editFormHandler}
                 />
@@ -176,7 +214,7 @@ class EditGoal extends Component {
                   >
                     <Typography variant="button">Update Goal</Typography>
                     {"  "}
-                    <AddBoxIcon />
+                    <EditIcon />
                   </Button>
                 </DialogActions>
               </Grid>
