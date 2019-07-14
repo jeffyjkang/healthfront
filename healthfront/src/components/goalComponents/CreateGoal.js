@@ -29,7 +29,6 @@ const styles = () => ({
   },
   button: {
     float: "right",
-    margin: 10,
     height: 60,
     width: 140,
     marginTop: 40,
@@ -81,6 +80,16 @@ class CreateGoal extends Component {
       .catch(error => console.log(error));
   };
 
+  onExitGoalCreate = () => {
+    this.setState({
+      weightInput: "",
+      exerciseGoalInput: "",
+      foodGoalInput: "",
+      sleepGoalInput: "",
+      miscGoalInput: ""
+    });
+  };
+
   render() {
     const { classes } = this.props;
     return (
@@ -89,6 +98,7 @@ class CreateGoal extends Component {
           maxWidth={"md"}
           open={this.props.createGoalOpen}
           onClose={this.props.handleCloseCreateGoal}
+          onExit={this.onExitGoalCreate}
           aria-labelledby="create-goal-title"
         >
           <DialogTitle id="create-goal-title">Create Monthly Goal</DialogTitle>
