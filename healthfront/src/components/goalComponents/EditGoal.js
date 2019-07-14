@@ -34,7 +34,6 @@ const styles = () => ({
   },
   button: {
     float: "right",
-    margin: 10,
     height: 60,
     width: 140,
     marginTop: 40,
@@ -54,16 +53,6 @@ class EditGoal extends Component {
       deleteGoalOpen: false
     };
   }
-
-  onEnterGoalEdit = () => {
-    this.setState({
-      ...this.state,
-      exerciseGoalInput: this.props.currentGoal.exerciseGoal,
-      foodGoalInput: this.props.currentGoal.foodGoal,
-      sleepGoalInput: this.props.currentGoal.sleepGoal,
-      miscGoalInput: this.props.currentGoal.miscGoal
-    });
-  };
 
   editFormHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -95,6 +84,27 @@ class EditGoal extends Component {
       })
       .catch(error => console.log(error));
   };
+
+  onEnterGoalEdit = () => {
+    this.setState({
+      ...this.state,
+      exerciseGoalInput: this.props.currentGoal.exerciseGoal,
+      foodGoalInput: this.props.currentGoal.foodGoal,
+      sleepGoalInput: this.props.currentGoal.sleepGoal,
+      miscGoalInput: this.props.currentGoal.miscGoal
+    });
+  };
+
+  onExitGoalEdit = () => {
+    this.setState({
+      exerciseGoalInput: "",
+      foodGoalInput: "",
+      sleepGoalInput: "",
+      miscGoalInput: "",
+      deleteGoalOpen: false
+    });
+  };
+
   // delete goal
   handleOpenDeleteGoal = () => {
     this.setState({
@@ -130,8 +140,9 @@ class EditGoal extends Component {
           maxWidth={"md"}
           open={this.props.editGoalOpen}
           onClose={this.props.handleCloseEditGoal}
-          aria-labelledby="edit-goal-title"
           onEnter={this.onEnterGoalEdit}
+          onExit={this.onExitGoalEdit}
+          aria-labelledby="edit-goal-title"
         >
           <DialogTitle id="edit-goal-title">Edit Monthly Goal</DialogTitle>
           <DialogContent>

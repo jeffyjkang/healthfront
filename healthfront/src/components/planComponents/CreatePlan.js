@@ -21,18 +21,16 @@ const styles = () => ({
     display: "flex"
   },
   chip: {
-    float: "right",
-    marginRight: 10
+    marginLeft: 20
   },
   textField: {
-    margin: 10
+    margin: 20
   },
   button: {
-    margin: 10,
     height: 60,
     width: 140,
-    marginTop: 100,
-    marginRight: 25,
+    marginTop: 120,
+    marginRight: 40,
     fontSize: 15
   }
 });
@@ -44,9 +42,17 @@ class CreatePlan extends Component {
       startDate: null,
       endDate: null,
       startDateVal: "No Val",
-      endDateVal: "No Val"
+      endDateVal: "No Val",
+      exercisePlanInput: "",
+      foodPlanInput: "",
+      sleepPlanInput: "",
+      miscPlanInput: ""
     };
   }
+
+  editFormHandler = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
   handleChangeStart = e => {
     const startDate = e;
@@ -64,9 +70,23 @@ class CreatePlan extends Component {
       endDateVal
     });
   };
+
+  onExitPlanCreate = () => {
+    this.setState({
+      startDate: null,
+      endDate: null,
+      startDateVal: "No Val",
+      endDateVal: "No Val",
+      exercisePlanInput: "",
+      foodPlanInput: "",
+      sleepPlanInput: "",
+      miscPlanInput: ""
+    });
+  };
+
   render() {
     const { classes } = this.props;
-    console.log(this.props);
+    // console.log(this.props);
     // console.log(this.state);
     return (
       <div>
@@ -74,6 +94,7 @@ class CreatePlan extends Component {
           maxWidth={"md"}
           open={this.props.createPlanOpen}
           onClose={this.props.handleCloseCreatePlan}
+          onExit={this.onExitPlanCreate}
           aria-labelledby="create-plan-title"
         >
           <DialogTitle id="create-plan-title">Create Weekly Plan</DialogTitle>
@@ -120,6 +141,8 @@ class CreatePlan extends Component {
                   rowsMax={10}
                   margin="dense"
                   name="exercisePlanInput"
+                  value={this.state.exercisePlanInput}
+                  onChange={this.editFormHandler}
                 />
               </Grid>
               <Grid item xs={4}>
@@ -133,6 +156,8 @@ class CreatePlan extends Component {
                   rowsMax={10}
                   margin="dense"
                   name="foodPlanInput"
+                  value={this.state.foodPlanInput}
+                  onChange={this.editFormHandler}
                 />
               </Grid>
             </Grid>
@@ -148,6 +173,8 @@ class CreatePlan extends Component {
                   rowsMax={10}
                   margin="dense"
                   name="sleepPlanInput"
+                  value={this.state.sleepPlanInput}
+                  onChange={this.editFormHandler}
                 />
               </Grid>
               <Grid item xs={4}>
@@ -161,6 +188,8 @@ class CreatePlan extends Component {
                   rowsMax={10}
                   margin="dense"
                   name="miscPlanInput"
+                  value={this.state.miscPlanInput}
+                  onChange={this.editFormHandler}
                 />
               </Grid>
               <Grid item xs={4}>
