@@ -63,6 +63,12 @@ const UserTwoPlan = props => {
                 className={classes.button}
                 variant="contained"
                 color="primary"
+                onClick={() =>
+                  props.handleOpenToggleDrawer({
+                    ...props.userTwoPlan,
+                    userTwoPlan: true
+                  })
+                }
               >
                 <Typography variant="button">View Plan</Typography>
                 <PageViewIcon />
