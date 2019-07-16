@@ -7,6 +7,7 @@ import EditGoal from "./goalComponents/EditGoal";
 import PageContainer from "./pageComponents/PageContainer";
 //
 import CreatePlan from "./planComponents/CreatePlan";
+import PlanView from "./planComponents/PlanView";
 //
 import jwt from "jsonwebtoken";
 import Axios from "axios";
@@ -36,7 +37,10 @@ class ComponentContainer extends Component {
       currentGoal: {},
       //
       createPlanOpen: false,
-      cGoalId: ""
+      cGoalId: "",
+      cPlan: {},
+      leftDrawerOpen: false,
+      rightDrawerOpen: false
     };
   }
   componentDidMount() {
@@ -45,6 +49,7 @@ class ComponentContainer extends Component {
       jwt.verify(token, secret, (error, decodedToken) => {
         if (error) {
           return alert("Failed decoding token");
+          // console.log(error);
         } else {
           const auth = { headers: { authorization: token } };
           Axios.get("http://localhost:9000/goal", auth).then(res => {
@@ -120,6 +125,23 @@ class ComponentContainer extends Component {
   handleCloseCreatePlan = () => {
     this.setState({ ...this.state, createPlanOpen: false });
   };
+  // view plan
+  handleOpenToggleDrawer = cPlan => {
+    if (cPlan.userOnePlan) {
+      this.setState({ ...this.state, cPlan, leftDrawerOpen: true });
+    }
+    if (cPlan.userTwoPlan) {
+      this.setState({ ...this.state, cPlan, rightDrawerOpen: true });
+    }
+  };
+  handleCloseToggleDrawer = () => {
+    this.setState({
+      ...this.state,
+      leftDrawerOpen: false,
+      rightDrawerOpen: false
+    });
+  };
+
   render() {
     const { classes } = this.props;
     return (
@@ -148,12 +170,20 @@ class ComponentContainer extends Component {
           userTwoGoals={this.state.userTwoGoals}
           handleOpenEditGoal={this.handleOpenEditGoal}
           handleOpenCreatePlan={this.handleOpenCreatePlan}
+          handleOpenToggleDrawer={this.handleOpenToggleDrawer}
         />
         <CreatePlan
           cGoalId={this.state.cGoalId}
           createPlanOpen={this.state.createPlanOpen}
           handleCloseCreatePlan={this.handleCloseCreatePlan}
           refresh={this.refresh}
+        />
+        <PlanView
+          cPlan={this.state.cPlan}
+          handleOpenToggleDrawer={this.handleOpenToggleDrawer}
+          handleCloseToggleDrawer={this.handleCloseToggleDrawer}
+          leftDrawerOpen={this.state.leftDrawerOpen}
+          rightDrawerOpen={this.state.rightDrawerOpen}
         />
       </div>
     );

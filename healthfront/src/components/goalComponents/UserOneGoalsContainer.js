@@ -18,6 +18,7 @@ const UserOneGoalsContainer = props => {
           userOneGoal={userOneGoal}
           handleOpenEditGoal={props.handleOpenEditGoal}
           handleOpenCreatePlan={props.handleOpenCreatePlan}
+          handleOpenToggleDrawer={props.handleOpenToggleDrawer}
         />
       ))}
     </div>

@@ -24,6 +24,7 @@ const PageContainer = props => {
             userOneGoals={props.userOneGoals}
             handleOpenEditGoal={props.handleOpenEditGoal}
             handleOpenCreatePlan={props.handleOpenCreatePlan}
+            handleOpenToggleDrawer={props.handleOpenToggleDrawer}
           />
         </Grid>
         <Grid item xs={6}>
@@ -31,6 +32,7 @@ const PageContainer = props => {
             userTwoGoals={props.userTwoGoals}
             handleOpenEditGoal={props.handleOpenEditGoal}
             handleOpenCreatePlan={props.handleOpenCreatePlan}
+            handleOpenToggleDrawer={props.handleOpenToggleDrawer}
           />
         </Grid>
       </Grid>

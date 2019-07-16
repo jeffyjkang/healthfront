@@ -10,11 +10,15 @@ const styles = () => ({
 
 const userTwoPlanContainer = props => {
   const { classes } = props;
-  console.log(props);
+  // console.log(props);
   return (
     <div className={classes.container}>
       {props.plans.map(userTwoPlan => (
-        <UserTwoPlan key={Math.random()} userTwoPlan={userTwoPlan} />
+        <UserTwoPlan
+          key={Math.random()}
+          userTwoPlan={userTwoPlan}
+          handleOpenToggleDrawer={props.handleOpenToggleDrawer}
+        />
       ))}
     </div>
   );

@@ -78,7 +78,10 @@ const UserOneGoal = props => {
         </Grid>
         <Grid container>
           <Grid item xs={12}>
-            <UserOnePlanContainer plans={props.userOneGoal.plans} />
+            <UserOnePlanContainer
+              plans={props.userOneGoal.plans}
+              handleOpenToggleDrawer={props.handleOpenToggleDrawer}
+            />
           </Grid>
         </Grid>
         <Grid container>
