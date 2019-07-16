@@ -6,10 +6,7 @@ import UserTwoGoalsContainer from "../goalComponents/UserTwoGoalsContainer";
 
 const styles = () => ({
   container: {
-    minWidth: "95vw",
-    border: "1px solid #3F51B5"
-  },
-  userContainer: {
+    minWidth: "98vw",
     border: "1px solid #3F51B5"
   }
 });
@@ -22,14 +19,14 @@ const PageContainer = props => {
   return (
     <div className={classes.container}>
       <Grid container>
-        <Grid className={classes.userContainer} item xs={6}>
+        <Grid item xs={6}>
           <UserOneGoalsContainer
             userOneGoals={props.userOneGoals}
             handleOpenEditGoal={props.handleOpenEditGoal}
             handleOpenCreatePlan={props.handleOpenCreatePlan}
           />
         </Grid>
-        <Grid className={classes.userContainer} item xs={6}>
+        <Grid item xs={6}>
           <UserTwoGoalsContainer
             userTwoGoals={props.userTwoGoals}
             handleOpenEditGoal={props.handleOpenEditGoal}
