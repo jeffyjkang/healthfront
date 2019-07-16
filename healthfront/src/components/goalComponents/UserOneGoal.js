@@ -10,17 +10,18 @@ import Button from "@material-ui/core/Button";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import AddIcon from "@material-ui/icons/Add";
 import EditIcon from "@material-ui/icons/Edit";
+import UserOnePlanContainer from "../planComponents/UserOnePlanContainer";
 
 const styles = () => ({
   container: {
     border: "1px solid #3F51B5",
-    height: 100,
+    // height: 100,
     display: "flex",
     justifyContent: "center",
     alignItems: "center"
   },
   paper: {
-    width: "90%"
+    width: "98%"
   },
   headerContainer: {
     margin: "auto"
@@ -73,6 +74,11 @@ const UserOneGoal = props => {
               {"    "}
               <EditIcon />
             </Button>
+          </Grid>
+        </Grid>
+        <Grid container>
+          <Grid item xs={12}>
+            <UserOnePlanContainer plans={props.userOneGoal.plans} />
           </Grid>
         </Grid>
         <Grid container>

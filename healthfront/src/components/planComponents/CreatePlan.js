@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Axios from "axios";
 //
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -69,6 +70,41 @@ class CreatePlan extends Component {
       startDateVal,
       endDateVal
     });
+  };
+
+  submitCreatePlan = () => {
+    console.log(this.props);
+    if (this.state.startDateVal === "No Val") {
+      return alert("Must pick a start Date to submit a plan.");
+    }
+    const token = localStorage.getItem("token");
+    const newPlan = {
+      fromDate: this.state.startDateVal,
+      toDate: this.state.endDateVal,
+      exercisePlan: this.state.exercisePlanInput,
+      foodPlan: this.state.foodPlanInput,
+      sleepPlan: this.state.sleepPlanInput,
+      miscPlan: this.state.miscPlanInput,
+      goalId: this.props.cGoalId
+    };
+    const auth = { headers: { authorization: token } };
+    Axios.post("http://localhost:9000/plan", newPlan, auth)
+      .then(res => {
+        console.log(res.status);
+        this.setState({
+          startDate: null,
+          endDate: null,
+          startDateVal: "No Val",
+          endDateVal: "No Val",
+          exercisePlanInput: "",
+          foodPlanInput: "",
+          sleepPlanInput: "",
+          miscPlanInput: ""
+        });
+        this.props.handleCloseCreatePlan();
+        this.props.refresh();
+      })
+      .catch(error => console.log(error));
   };
 
   onExitPlanCreate = () => {
@@ -198,6 +234,7 @@ class CreatePlan extends Component {
                     className={classes.button}
                     variant="contained"
                     color="primary"
+                    onClick={this.submitCreatePlan}
                   >
                     <Typography variant="button">Submit Plan</Typography>
                     {"  "}

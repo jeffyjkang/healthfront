@@ -15,7 +15,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const styles = () => ({
   container: {
-    minWidth: "95vw",
+    minWidth: "98vw",
     margin: 10
   },
   toolbar: {
@@ -113,7 +113,7 @@ const NavBar = props => {
               />
             </MenuItem>
           </Menu>
-          <Typography variant="h3">Health Logger</Typography>
+          <Typography variant="h2">Health Logger</Typography>
           <Typography variant="h6">Welcome : {props.username}</Typography>
           <Button
             className={classes.button}
