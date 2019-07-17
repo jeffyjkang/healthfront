@@ -23,22 +23,22 @@ const styles = () => ({
   }
 });
 
-const DeleteGoal = props => {
+const DeletePlan = props => {
   const { classes } = props;
   return (
     <div>
       <Dialog
         maxWidth={"sm"}
-        open={props.deleteGoalOpen}
-        onClose={props.handleCloseDeleteGoal}
-        aria-labelledby="delete-goal-title"
+        open={props.deletePlanOpen}
+        onClose={props.handleCloseDeletePlan}
+        aria-labelledby="delete-plan-title"
       >
-        <DialogTitle id="delete-goal-title">Delete Goal</DialogTitle>
+        <DialogTitle id="delete-plan-title">Delete Plan</DialogTitle>
         <DialogContent>
           <Grid container>
             <Grid item xs={12}>
               <Typography variant="h6">
-                Are you sure you want to delete this goal?
+                Are you sure you want to delete this Plan?
               </Typography>
             </Grid>
           </Grid>
@@ -49,10 +49,10 @@ const DeleteGoal = props => {
                   className={classes.button}
                   variant="contained"
                   color="primary"
-                  onClick={props.handleCloseDeleteGoal}
+                  onClick={props.handleCloseDeletePlan}
                 >
                   <Typography variant="button">Cancel</Typography>
-                  {"  "}
+                  {"    "}
                   <BackspaceIcon />
                 </Button>
               </DialogActions>
@@ -63,10 +63,10 @@ const DeleteGoal = props => {
                   className={classes.button}
                   variant="contained"
                   color="secondary"
-                  onClick={props.submitDeleteGoal}
+                  onClick={props.submitDeletePlan}
                 >
                   <Typography variant="button">Confirm </Typography>
-                  {"  "}
+                  {"    "}
                   <DeleteForeverIcon />
                 </Button>
               </DialogActions>
@@ -78,4 +78,4 @@ const DeleteGoal = props => {
   );
 };
 
-export default withStyles(styles)(DeleteGoal);
+export default withStyles(styles)(DeletePlan);

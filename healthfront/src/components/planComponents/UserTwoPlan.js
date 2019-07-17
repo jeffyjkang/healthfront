@@ -86,6 +86,9 @@ const UserTwoPlan = props => {
               className={classes.button}
               variant="contained"
               color="primary"
+              onClick={() =>
+                props.handleOpenEditPlan({ ...props.userTwoPlan, userId: 2 })
+              }
             >
               <Typography variant="button">Edit Plan</Typography>
               <EditIcon />
