@@ -53,10 +53,34 @@ class EditPlan extends Component {
   }
 
   editFormHandler = e => {
-    this.setStaet({});
+    this.setState({ [e.target.name]: e.target.value });
   };
 
-  submitUpdatedPlan = () => {};
+  submitUpdatedPlan = () => {
+    const token = localStorage.getItem("token");
+    const id = this.props.currentPlan.id;
+    const updatedPlan = {
+      exercisePlan: this.state.exercisePlanInput,
+      foodPlan: this.state.foodPlanInput,
+      sleepPlan: this.state.sleepPlanInput,
+      miscPlan: this.state.miscPlanInput,
+      goalId: this.props.currentPlan.goalId
+    };
+    const auth = { headers: { authorization: token } };
+    Axios.put(`http://localhost:9000/plan/${id}`, updatedPlan, auth)
+      .then(res => {
+        console.log(res.status);
+        this.setState({
+          exercisePlanInput: "",
+          foodPlanInput: "",
+          sleepPlanInput: "",
+          miscPlanInput: ""
+        });
+        this.props.handleCloseEditPlan();
+        this.props.refresh();
+      })
+      .catch(error => console.log(error));
+  };
 
   onEnterPlanEdit = () => {
     this.setState({
@@ -94,11 +118,22 @@ class EditPlan extends Component {
       deletePlanOpen: false
     });
   };
-  submitDeletePlan = () => {};
+  submitDeletePlan = () => {
+    const token = localStorage.getItem("token");
+    const id = this.props.currentPlan.id;
+    const auth = { headers: { authorization: token } };
+    Axios.delete(`http://localhost:9000/plan/${id}`, auth)
+      .then(res => {
+        console.log(res.status);
+        this.handleCloseDeletePlan();
+        this.props.handleCloseEditPlan();
+        this.props.refresh();
+      })
+      .catch(error => console.log(error));
+  };
   //
   render() {
     const { classes } = this.props;
-    console.log(this.props);
     return (
       <div>
         <Dialog
@@ -224,7 +259,7 @@ class EditPlan extends Component {
         <DeletePlan
           deletePlanOpen={this.state.deletePlanOpen}
           handleCloseDeletePlan={this.handleCloseDeletePlan}
-          submitDeleteGoal={this.submitDeletePlan}
+          submitDeletePlan={this.submitDeletePlan}
         />
       </div>
     );
