@@ -12,6 +12,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Typography from "@material-ui/core/Typography";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
+import Divider from "@material-ui/core/Divider";
 //
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -134,6 +135,7 @@ class CreatePlan extends Component {
           aria-labelledby="create-plan-title"
         >
           <DialogTitle id="create-plan-title">Create Weekly Plan</DialogTitle>
+          <Divider />
           <DialogContent>
             <Grid container>
               <Grid item xs={4}>
