@@ -42,7 +42,10 @@ class ComponentContainer extends Component {
       cGoalId: "",
       currentPlan: {},
       leftDrawerOpen: false,
-      rightDrawerOpen: false
+      rightDrawerOpen: false,
+      //
+      editDayOpen: false,
+      currentDay: {}
     };
   }
   componentDidMount() {
@@ -158,6 +161,10 @@ class ComponentContainer extends Component {
   handleCloseEditPlan = () => {
     this.setState({ ...this.state, editPlanOpen: false });
   };
+  // edit day
+  handleOpenEditDay = day => {
+    console.log(day);
+  };
 
   render() {
     const { classes } = this.props;
@@ -189,6 +196,7 @@ class ComponentContainer extends Component {
           handleOpenCreatePlan={this.handleOpenCreatePlan}
           handleOpenToggleDrawer={this.handleOpenToggleDrawer}
           handleOpenEditPlan={this.handleOpenEditPlan}
+          handleOpenEditDay={this.handleOpenEditDay}
         />
         <CreatePlan
           cGoalId={this.state.cGoalId}

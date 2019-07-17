@@ -82,6 +82,7 @@ const UserOneGoal = props => {
               plans={props.userOneGoal.plans}
               handleOpenToggleDrawer={props.handleOpenToggleDrawer}
               handleOpenEditPlan={props.handleOpenEditPlan}
+              handleOpenEditDay={props.handleOpenEditDay}
             />
           </Grid>
         </Grid>

@@ -19,6 +19,7 @@ const userOnePlanContainer = props => {
           userOnePlan={userOnePlan}
           handleOpenToggleDrawer={props.handleOpenToggleDrawer}
           handleOpenEditPlan={props.handleOpenEditPlan}
+          handleOpenEditDay={props.handleOpenEditDay}
         />
       ))}
     </div>

@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import PageViewIcon from "@material-ui/icons/Pageview";
 import EditIcon from "@material-ui/icons/Edit";
+import UserTwoDayContainer from "../dayComponents/UserTwoDayContainer";
 
 const styles = () => ({
   container: {
@@ -27,10 +28,10 @@ const styles = () => ({
     justifyContent: "space-between"
   },
   button: {
-    margin: 2
+    margin: 3
   },
   chip: {
-    margin: 2
+    margin: 3
   }
 });
 
@@ -64,7 +65,10 @@ const UserTwoPlan = props => {
             />
           </Grid>
           <Grid item xs={10}>
-            <div>something</div>
+            <UserTwoDayContainer
+              days={props.userTwoPlan.days}
+              handleOpenEditDay={props.handleOpenEditDay}
+            />
           </Grid>
           <Grid className={classes.paperTail} item xs={1}>
             <Button

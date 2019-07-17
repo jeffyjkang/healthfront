@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import PageViewIcon from "@material-ui/icons/Pageview";
 import EditIcon from "@material-ui/icons/Edit";
+import UserOneDayContainer from "../dayComponents/UserOneDayContainer";
 
 const styles = () => ({
   container: {
@@ -27,16 +28,16 @@ const styles = () => ({
     justifyContent: "space-between"
   },
   button: {
-    margin: 2
+    margin: 3
   },
   chip: {
-    margin: 2
+    margin: 3
   }
 });
 
 const UserOnePlan = props => {
   const { classes } = props;
-  //   console.log(props);
+  // console.log(props);
   return (
     <div className={classes.container}>
       <Paper className={classes.paperContainer}>
@@ -64,7 +65,10 @@ const UserOnePlan = props => {
             />
           </Grid>
           <Grid item xs={10}>
-            <div>something</div>
+            <UserOneDayContainer
+              days={props.userOnePlan.days}
+              handleOpenEditDay={props.handleOpenEditDay}
+            />
           </Grid>
           <Grid className={classes.paperTail} item xs={1}>
             <Button
