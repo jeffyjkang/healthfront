@@ -18,6 +18,7 @@ const userTwoPlanContainer = props => {
           key={Math.random()}
           userTwoPlan={userTwoPlan}
           handleOpenToggleDrawer={props.handleOpenToggleDrawer}
+          handleOpenEditPlan={props.handleOpenEditPlan}
         />
       ))}
     </div>

@@ -8,6 +8,7 @@ import PageContainer from "./pageComponents/PageContainer";
 //
 import CreatePlan from "./planComponents/CreatePlan";
 import PlanView from "./planComponents/PlanView";
+import EditPlan from "./planComponents/EditPlan";
 //
 import jwt from "jsonwebtoken";
 import Axios from "axios";
@@ -37,8 +38,9 @@ class ComponentContainer extends Component {
       currentGoal: {},
       //
       createPlanOpen: false,
+      editPlanOpen: false,
       cGoalId: "",
-      cPlan: {},
+      currentPlan: {},
       leftDrawerOpen: false,
       rightDrawerOpen: false
     };
@@ -126,12 +128,12 @@ class ComponentContainer extends Component {
     this.setState({ ...this.state, createPlanOpen: false });
   };
   // view plan
-  handleOpenToggleDrawer = cPlan => {
-    if (cPlan.userOnePlan) {
-      this.setState({ ...this.state, cPlan, leftDrawerOpen: true });
+  handleOpenToggleDrawer = currentPlan => {
+    if (currentPlan.userOnePlan) {
+      this.setState({ ...this.state, currentPlan, leftDrawerOpen: true });
     }
-    if (cPlan.userTwoPlan) {
-      this.setState({ ...this.state, cPlan, rightDrawerOpen: true });
+    if (currentPlan.userTwoPlan) {
+      this.setState({ ...this.state, currentPlan, rightDrawerOpen: true });
     }
   };
   handleCloseToggleDrawer = () => {
@@ -140,6 +142,21 @@ class ComponentContainer extends Component {
       leftDrawerOpen: false,
       rightDrawerOpen: false
     });
+  };
+  // edit plan
+  handleOpenEditPlan = plan => {
+    if (this.state.id !== plan.userId) {
+      return alert("You are not authorized to modify another user's plans.");
+    } else {
+      this.setState({
+        ...this.state,
+        currentPlan: plan,
+        editPlanOpen: true
+      });
+    }
+  };
+  handleCloseEditPlan = () => {
+    this.setState({ ...this.state, editPlanOpen: false });
   };
 
   render() {
@@ -171,6 +188,7 @@ class ComponentContainer extends Component {
           handleOpenEditGoal={this.handleOpenEditGoal}
           handleOpenCreatePlan={this.handleOpenCreatePlan}
           handleOpenToggleDrawer={this.handleOpenToggleDrawer}
+          handleOpenEditPlan={this.handleOpenEditPlan}
         />
         <CreatePlan
           cGoalId={this.state.cGoalId}
@@ -179,11 +197,16 @@ class ComponentContainer extends Component {
           refresh={this.refresh}
         />
         <PlanView
-          cPlan={this.state.cPlan}
+          currentPlan={this.state.currentPlan}
           handleOpenToggleDrawer={this.handleOpenToggleDrawer}
           handleCloseToggleDrawer={this.handleCloseToggleDrawer}
           leftDrawerOpen={this.state.leftDrawerOpen}
           rightDrawerOpen={this.state.rightDrawerOpen}
+        />
+        <EditPlan
+          currentPlan={this.state.currentPlan}
+          editPlanOpen={this.state.editPlanOpen}
+          handleCloseEditPlan={this.handleCloseEditPlan}
         />
       </div>
     );

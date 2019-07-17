@@ -81,6 +81,7 @@ const UserOneGoal = props => {
             <UserOnePlanContainer
               plans={props.userOneGoal.plans}
               handleOpenToggleDrawer={props.handleOpenToggleDrawer}
+              handleOpenEditPlan={props.handleOpenEditPlan}
             />
           </Grid>
         </Grid>

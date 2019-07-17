@@ -38,7 +38,7 @@ const styles = () => ({
 
 const PlanView = props => {
   const { classes } = props;
-  console.log(props);
+  //   console.log(props);
   const info = props => (
     <div>
       <Typography className={classes.header} variant="h3">
@@ -51,14 +51,14 @@ const PlanView = props => {
           className={classes.chip}
           variant="outlined"
           color="primary"
-          label={props.cPlan.fromDate}
+          label={props.currentPlan.fromDate}
         />
         To Date:
         <Chip
           className={classes.chip}
           variant="outlined"
           color="primary"
-          label={props.cPlan.toDate}
+          label={props.currentPlan.toDate}
         />
       </Typography>
       <Divider />
@@ -72,7 +72,9 @@ const PlanView = props => {
           title="Weekly Exercise Plan"
         />
         <CardContent>
-          <Typography variant="body2">{props.cPlan.exercisePlan}</Typography>
+          <Typography variant="body2">
+            {props.currentPlan.exercisePlan}
+          </Typography>
         </CardContent>
       </Card>
       <Divider />
@@ -86,7 +88,7 @@ const PlanView = props => {
           title="Weekly Food Plan"
         />
         <CardContent>
-          <Typography variant="body2">{props.cPlan.foodPlan}</Typography>
+          <Typography variant="body2">{props.currentPlan.foodPlan}</Typography>
         </CardContent>
       </Card>
       <Divider />
@@ -100,7 +102,7 @@ const PlanView = props => {
           title="Weekly Sleep Plan"
         />
         <CardContent>
-          <Typography variant="body2">{props.cPlan.sleepPlan}</Typography>
+          <Typography variant="body2">{props.currentPlan.sleepPlan}</Typography>
         </CardContent>
       </Card>
       <Divider />
@@ -114,7 +116,7 @@ const PlanView = props => {
           title="Weekly Miscellaneous Plan"
         />
         <CardContent>
-          <Typography variant="body2">{props.cPlan.miscPlan}</Typography>
+          <Typography variant="body2">{props.currentPlan.miscPlan}</Typography>
         </CardContent>
       </Card>
     </div>
