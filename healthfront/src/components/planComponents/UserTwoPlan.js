@@ -1,8 +1,6 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
+import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Chip from "@material-ui/core/Chip";
 import Typography from "@material-ui/core/Typography";
@@ -16,19 +14,23 @@ const styles = () => ({
     // height: 150,
     display: "flex"
   },
-  cardContainer: {
+  paperContainer: {
     minWidth: "100%"
   },
-  CardHead: {
+  paperHead: {
     display: "flex",
     flexDirection: "column"
   },
-  CardTail: {
+  paperTail: {
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+    justifyContent: "space-between"
   },
   button: {
-    marginTop: 2
+    margin: 2
+  },
+  chip: {
+    margin: 2
   }
 });
 
@@ -37,56 +39,60 @@ const UserTwoPlan = props => {
   //   console.log(props);
   return (
     <div className={classes.container}>
-      <Card className={classes.cardContainer}>
+      <Paper className={classes.paperContainer}>
         <Grid container>
-          <Grid className={classes.CardHead} item xs={1}>
-            <Chip variant="outlined" color="primary" label="Plan" />
+          <Grid className={classes.paperHead} item xs={1}>
+            <Chip
+              className={classes.chip}
+              variant="outlined"
+              color="primary"
+              label="Plan"
+            />
             <Typography variant="caption">From:</Typography>
             <Chip
+              className={classes.chip}
               variant="outlined"
               color="primary"
               label={props.userTwoPlan.fromDate}
             />
             <Typography variant="caption">To:</Typography>
             <Chip
+              className={classes.chip}
               variant="outlined"
               color="primary"
               label={props.userTwoPlan.toDate}
             />
           </Grid>
           <Grid item xs={10}>
-            <CardContent>Something</CardContent>
+            <div>something</div>
           </Grid>
-          <Grid className={classes.CardTail} item xs={1}>
-            <CardActions>
-              <Button
-                className={classes.button}
-                variant="contained"
-                color="primary"
-                onClick={() =>
-                  props.handleOpenToggleDrawer({
-                    ...props.userTwoPlan,
-                    userTwoPlan: true
-                  })
-                }
-              >
-                <Typography variant="button">View Plan</Typography>
-                <PageViewIcon />
-              </Button>
-            </CardActions>
-            <CardActions>
-              <Button
-                className={classes.button}
-                variant="contained"
-                color="primary"
-              >
-                <Typography variant="button">Edit Plan</Typography>
-                <EditIcon />
-              </Button>
-            </CardActions>
+          <Grid className={classes.paperTail} item xs={1}>
+            <Button
+              className={classes.button}
+              variant="contained"
+              color="primary"
+              onClick={() =>
+                props.handleOpenToggleDrawer({
+                  ...props.userTwoPlan,
+                  userTwoPlan: true
+                })
+              }
+            >
+              <Typography variant="button">View Plan</Typography>
+              <PageViewIcon />
+            </Button>
+
+            <Button
+              className={classes.button}
+              variant="contained"
+              color="primary"
+            >
+              <Typography variant="button">Edit Plan</Typography>
+              <EditIcon />
+            </Button>
           </Grid>
         </Grid>
-      </Card>
+      </Paper>
     </div>
   );
 };
