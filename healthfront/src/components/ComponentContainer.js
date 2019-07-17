@@ -207,6 +207,7 @@ class ComponentContainer extends Component {
           currentPlan={this.state.currentPlan}
           editPlanOpen={this.state.editPlanOpen}
           handleCloseEditPlan={this.handleCloseEditPlan}
+          refresh={this.refresh}
         />
       </div>
     );
