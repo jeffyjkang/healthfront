@@ -52,7 +52,7 @@ const UserOneDay = props => {
         <Divider />
         <Button className={classes.button} variant="outlined">
           <SearchIcon fontSize="small" />
-          <Typography variant="caption">Notes</Typography>
+          <Typography variant="caption">E.Notes</Typography>
           <Badge
             color={props.userOneDay.exerciseComplete ? "primary" : "secondary"}
             variant="dot"
@@ -63,7 +63,7 @@ const UserOneDay = props => {
         <Divider />
         <Button className={classes.button} variant="outlined">
           <SearchIcon fontSize="small" />
-          <Typography variant="caption">Notes</Typography>
+          <Typography variant="caption">F.Notes</Typography>
           <Badge
             color={props.userOneDay.foodComplete ? "primary" : "secondary"}
             variant="dot"
@@ -74,7 +74,7 @@ const UserOneDay = props => {
         <Divider />
         <Button className={classes.button} variant="outlined">
           <SearchIcon fontSize="small" />
-          <Typography variant="caption">Notes</Typography>
+          <Typography variant="caption">S.Notes</Typography>
           <Badge
             color={props.userOneDay.sleepComplete ? "primary" : "secondary"}
             variant="dot"
@@ -85,7 +85,7 @@ const UserOneDay = props => {
         <Divider />
         <Button className={classes.button} variant="outlined">
           <SearchIcon fontSize="small" />
-          <Typography variant="caption">Notes</Typography>
+          <Typography variant="caption">M.Notes</Typography>
           <Badge
             color={props.userOneDay.miscComplete ? "primary" : "secondary"}
             variant="dot"
