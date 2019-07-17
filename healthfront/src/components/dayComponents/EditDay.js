@@ -40,10 +40,10 @@ class EditDay extends Component {
     super(props);
     this.state = {
       date: "",
-      exerciseComplete: null,
-      foodComplete: null,
-      sleepComplete: null,
-      miscComplete: null,
+      exerciseComplete: false,
+      foodComplete: false,
+      sleepComplete: false,
+      miscComplete: false,
       exerciseNotes: "",
       foodNotes: "",
       sleepNotes: "",
@@ -59,7 +59,40 @@ class EditDay extends Component {
     this.setState({ ...this.state, [name]: e.target.checked });
   };
 
-  submitUpdatedDay = () => {};
+  submitUpdatedDay = () => {
+    const token = localStorage.getItem("token");
+    const id = this.props.currentDay.id;
+    const updatedDay = {
+      exerciseComplete: this.state.exerciseComplete,
+      foodComplete: this.state.foodComplete,
+      sleepComplete: this.state.sleepComplete,
+      miscComplete: this.state.miscComplete,
+      exerciseNotes: this.state.exerciseNotes,
+      foodNotes: this.state.foodNotes,
+      sleepNotes: this.state.sleepNotes,
+      miscNotes: this.state.miscNotes,
+      planId: this.props.currentDay.planId
+    };
+    const auth = { headers: { authorization: token } };
+    Axios.put(`http://localhost:9000/day/${id}`, updatedDay, auth)
+      .then(res => {
+        console.log(res.status);
+        this.setState({
+          date: "",
+          exerciseComplete: false,
+          foodComplete: false,
+          sleepComplete: false,
+          miscComplete: false,
+          exerciseNotes: "",
+          foodNotes: "",
+          sleepNotes: "",
+          miscNotes: ""
+        });
+        this.props.handleCloseEditDay();
+        this.props.refresh();
+      })
+      .catch(error => console.log(error));
+  };
 
   onEnterDayEdit = () => {
     this.setState({
@@ -68,7 +101,7 @@ class EditDay extends Component {
       exerciseComplete: Boolean(this.props.currentDay.exerciseComplete),
       foodComplete: Boolean(this.props.currentDay.foodComplete),
       sleepComplete: Boolean(this.props.currentDay.sleepComplete),
-      miscComplete: Boolean(this.props.currentDay.miscCompete),
+      miscComplete: Boolean(this.props.currentDay.miscComplete),
       exerciseNotes: this.props.currentDay.exerciseNotes
         ? this.props.currentDay.exerciseNotes
         : "",
@@ -87,10 +120,10 @@ class EditDay extends Component {
   onExitDayEdit = () => {
     this.setState({
       date: "",
-      exerciseComplete: null,
-      foodComplete: null,
-      sleepComplete: null,
-      miscComplete: null,
+      exerciseComplete: false,
+      foodComplete: false,
+      sleepComplete: false,
+      miscComplete: false,
       exerciseNotes: "",
       foodNotes: "",
       sleepNotes: "",
@@ -100,8 +133,7 @@ class EditDay extends Component {
 
   render() {
     const { classes } = this.props;
-    console.log(this.props);
-    console.log(this.state);
+    // console.log(this.props);
     return (
       <div>
         <Dialog
@@ -131,6 +163,7 @@ class EditDay extends Component {
                   className={classes.button}
                   variant="contained"
                   color="primary"
+                  onClick={this.submitUpdatedDay}
                 >
                   <Typography variant="button">Update daily log</Typography>
                   <DoneOutlineIcon />
