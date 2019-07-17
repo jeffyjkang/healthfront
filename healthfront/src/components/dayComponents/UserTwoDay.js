@@ -74,7 +74,7 @@ const UserTwoDay = props => {
   const id2 = open2 ? "simple-popper2" : undefined;
   const id3 = open3 ? "simple-popper3" : undefined;
   const id4 = open4 ? "simple-popper4" : undefined;
-  console.log(props);
+  //   console.log(props);
   return (
     <div>
       <Card className={classes.card}>
@@ -250,7 +250,14 @@ const UserTwoDay = props => {
           </Card>
         </Popover>
         <Divider />
-        <Button className={classes.button} variant="outlined" color="primary">
+        <Button
+          className={classes.button}
+          variant="outlined"
+          color="primary"
+          onClick={() => {
+            props.handleOpenEditDay({ ...props.userTwoDay, userId: 2 });
+          }}
+        >
           <Typography variant="caption">Update</Typography>
           <BuildIcon fontSize="small" />
         </Button>

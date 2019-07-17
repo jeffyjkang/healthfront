@@ -10,6 +10,8 @@ import CreatePlan from "./planComponents/CreatePlan";
 import PlanView from "./planComponents/PlanView";
 import EditPlan from "./planComponents/EditPlan";
 //
+import EditDay from "./dayComponents/EditDay";
+//
 import jwt from "jsonwebtoken";
 import Axios from "axios";
 const secret = process.env.REACT_APP_SECRET;
@@ -163,7 +165,18 @@ class ComponentContainer extends Component {
   };
   // edit day
   handleOpenEditDay = day => {
-    console.log(day);
+    if (this.state.id !== day.userId) {
+      return alert("You are not authorized to modify another user's day log.");
+    } else {
+      this.setState({
+        ...this.state,
+        currentDay: day,
+        editDayOpen: true
+      });
+    }
+  };
+  handleCloseEditDay = () => {
+    this.setState({ ...this.state, editDayOpen: false });
   };
 
   render() {
@@ -215,6 +228,12 @@ class ComponentContainer extends Component {
           currentPlan={this.state.currentPlan}
           editPlanOpen={this.state.editPlanOpen}
           handleCloseEditPlan={this.handleCloseEditPlan}
+          refresh={this.refresh}
+        />
+        <EditDay
+          currentDay={this.state.currentDay}
+          editDayOpen={this.state.editDayOpen}
+          handleCloseEditDay={this.handleCloseEditDay}
           refresh={this.refresh}
         />
       </div>

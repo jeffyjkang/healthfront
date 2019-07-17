@@ -8,6 +8,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Typography from "@material-ui/core/Typography";
+import Divider from "@material-ui/core/Divider";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import BackspaceIcon from "@material-ui/icons/Backspace";
 
@@ -34,6 +35,7 @@ const DeleteGoal = props => {
         aria-labelledby="delete-goal-title"
       >
         <DialogTitle id="delete-goal-title">Delete Goal</DialogTitle>
+        <Divider />
         <DialogContent>
           <Grid container>
             <Grid item xs={12}>

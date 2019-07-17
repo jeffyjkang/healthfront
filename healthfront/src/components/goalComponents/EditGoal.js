@@ -12,6 +12,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Typography from "@material-ui/core/Typography";
+import Divider from "@material-ui/core/Divider";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 
@@ -145,6 +146,7 @@ class EditGoal extends Component {
           aria-labelledby="edit-goal-title"
         >
           <DialogTitle id="edit-goal-title">Edit Monthly Goal</DialogTitle>
+          <Divider />
           <DialogContent>
             <Grid container className={classes.headerContainer}>
               <Grid item xs={4}>
