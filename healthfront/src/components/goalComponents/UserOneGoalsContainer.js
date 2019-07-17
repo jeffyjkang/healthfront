@@ -20,6 +20,7 @@ const UserOneGoalsContainer = props => {
           handleOpenCreatePlan={props.handleOpenCreatePlan}
           handleOpenToggleDrawer={props.handleOpenToggleDrawer}
           handleOpenEditPlan={props.handleOpenEditPlan}
+          handleOpenEditDay={props.handleOpenEditDay}
         />
       ))}
     </div>
