@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Axios from "axios";
+import DeletePlan from "./DeletePlan";
 //
 import { withStyles } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
@@ -93,7 +94,8 @@ class EditPlan extends Component {
       deletePlanOpen: false
     });
   };
-
+  submitDeletePlan = () => {};
+  //
   render() {
     const { classes } = this.props;
     console.log(this.props);
@@ -219,6 +221,11 @@ class EditPlan extends Component {
             </Grid>
           </DialogContent>
         </Dialog>
+        <DeletePlan
+          deletePlanOpen={this.state.deletePlanOpen}
+          handleCloseDeletePlan={this.handleCloseDeletePlan}
+          submitDeleteGoal={this.submitDeletePlan}
+        />
       </div>
     );
   }
