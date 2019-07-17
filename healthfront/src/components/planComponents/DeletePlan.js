@@ -8,6 +8,8 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Typography from "@material-ui/core/Typography";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import BackspaceIcon from "@material-ui/icons/Backspace";
 
 const styles = () => ({
   container: {
@@ -50,6 +52,8 @@ const DeletePlan = props => {
                   onClick={props.handleCloseDeletePlan}
                 >
                   <Typography variant="button">Cancel</Typography>
+                  {"    "}
+                  <BackspaceIcon />
                 </Button>
               </DialogActions>
             </Grid>
@@ -62,6 +66,8 @@ const DeletePlan = props => {
                   onClick={props.submitDeletePlan}
                 >
                   <Typography variant="button">Confirm </Typography>
+                  {"    "}
+                  <DeleteForeverIcon />
                 </Button>
               </DialogActions>
             </Grid>
