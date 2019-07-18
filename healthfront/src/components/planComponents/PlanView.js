@@ -17,6 +17,7 @@ import HotelIcon from "@material-ui/icons/Hotel";
 import RestaurantIcon from "@material-ui/icons/Restaurant";
 import FitnessIcon from "@material-ui/icons/FitnessCenter";
 import CategoryIcon from "@material-ui/icons/Category";
+import AccessibilityIcon from "@material-ui/icons/Accessibility";
 
 const styles = () => ({
   container: {
@@ -61,6 +62,17 @@ const PlanView = props => {
           label={props.currentPlan.toDate}
         />
       </Typography>
+      <Divider />
+      <Card className={classes.card}>
+        <CardHeader
+          avatar={
+            <Avatar className={classes.avatar}>
+              <AccessibilityIcon />
+            </Avatar>
+          }
+          title={`Current Weight: ${props.currentPlan.weight}`}
+        />
+      </Card>
       <Divider />
       <Card className={classes.card}>
         <CardHeader

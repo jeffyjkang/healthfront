@@ -47,6 +47,7 @@ class EditGoal extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      weightInput: "",
       exerciseGoalInput: "",
       foodGoalInput: "",
       sleepGoalInput: "",
@@ -64,7 +65,7 @@ class EditGoal extends Component {
     const id = this.props.currentGoal.id;
     const updatedGoal = {
       date: this.props.date,
-      weight: this.props.weight,
+      weight: this.state.weightInput,
       exerciseGoal: this.state.exerciseGoalInput,
       foodGoal: this.state.foodGoalInput,
       sleepGoal: this.state.sleepGoalInput,
@@ -75,6 +76,7 @@ class EditGoal extends Component {
       .then(res => {
         console.log(res.status);
         this.setState({
+          weightInput: "",
           exerciseGoalInput: "",
           foodGoalInput: "",
           sleepGoalInput: "",
@@ -89,6 +91,7 @@ class EditGoal extends Component {
   onEnterGoalEdit = () => {
     this.setState({
       ...this.state,
+      weightInput: this.props.currentGoal.weight,
       exerciseGoalInput: this.props.currentGoal.exerciseGoal,
       foodGoalInput: this.props.currentGoal.foodGoal,
       sleepGoalInput: this.props.currentGoal.sleepGoal,
@@ -98,6 +101,7 @@ class EditGoal extends Component {
 
   onExitGoalEdit = () => {
     this.setState({
+      weightInput: "",
       exerciseGoalInput: "",
       foodGoalInput: "",
       sleepGoalInput: "",
@@ -163,10 +167,16 @@ class EditGoal extends Component {
                 />
               </Grid>
               <Grid item xs={4}>
-                <Chip
-                  className={classes.chip}
-                  label={`Initial Weight: ${this.props.currentGoal.weight}`}
+                <TextField
+                  className={classes.textField}
+                  type="number"
+                  label="Update initial weight."
                   variant="outlined"
+                  margin="dense"
+                  name="weightInput"
+                  placeholder={this.props.currentGoal.weight}
+                  value={this.state.weightInput}
+                  onChange={this.editFormHandler}
                 />
               </Grid>
               <Grid item xs={4}>

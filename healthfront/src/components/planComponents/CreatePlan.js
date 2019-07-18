@@ -31,8 +31,8 @@ const styles = () => ({
   button: {
     height: 60,
     width: 140,
-    marginTop: 120,
-    marginRight: 40,
+    marginTop: 20,
+    marginRight: 45,
     fontSize: 15
   }
 });
@@ -48,7 +48,8 @@ class CreatePlan extends Component {
       exercisePlanInput: "",
       foodPlanInput: "",
       sleepPlanInput: "",
-      miscPlanInput: ""
+      miscPlanInput: "",
+      weightInput: ""
     };
   }
 
@@ -86,6 +87,7 @@ class CreatePlan extends Component {
       foodPlan: this.state.foodPlanInput,
       sleepPlan: this.state.sleepPlanInput,
       miscPlan: this.state.miscPlanInput,
+      weight: this.state.weightInput,
       goalId: this.props.cGoalId
     };
     const auth = { headers: { authorization: token } };
@@ -100,7 +102,8 @@ class CreatePlan extends Component {
           exercisePlanInput: "",
           foodPlanInput: "",
           sleepPlanInput: "",
-          miscPlanInput: ""
+          miscPlanInput: "",
+          weightInput: ""
         });
         this.props.handleCloseCreatePlan();
         this.props.refresh();
@@ -117,7 +120,8 @@ class CreatePlan extends Component {
       exercisePlanInput: "",
       foodPlanInput: "",
       sleepPlanInput: "",
-      miscPlanInput: ""
+      miscPlanInput: "",
+      weightInput: ""
     });
   };
 
@@ -231,6 +235,16 @@ class CreatePlan extends Component {
                 />
               </Grid>
               <Grid item xs={4}>
+                <TextField
+                  className={classes.textField}
+                  type="number"
+                  label="Current Weight"
+                  variant="outlined"
+                  margin="dense"
+                  name="weightInput"
+                  value={this.state.weightInput}
+                  onChange={this.editFormHandler}
+                />
                 <DialogActions>
                   <Button
                     className={classes.button}

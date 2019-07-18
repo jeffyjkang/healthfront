@@ -119,7 +119,7 @@ class CreateGoal extends Component {
                 <TextField
                   className={classes.weightField}
                   type="number"
-                  label="Current Weight"
+                  label="Initial Weight"
                   variant="outlined"
                   margin="dense"
                   name="weightInput"
