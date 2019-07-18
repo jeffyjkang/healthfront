@@ -189,7 +189,6 @@ class ComponentContainer extends Component {
           username={this.state.username}
           onMonth={this.onMonth}
         />
-        <div>App</div>
         <CreateGoal
           cMonthValue={this.state.cMonthValue}
           createGoalOpen={this.state.createGoalOpen}

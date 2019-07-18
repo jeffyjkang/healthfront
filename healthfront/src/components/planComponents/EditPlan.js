@@ -30,7 +30,7 @@ const styles = () => ({
   endGrid: {
     display: "flex",
     flexDirection: "column",
-    justifyContent: "space-between"
+    justifyContent: "space-around"
   },
   button: {
     margin: 20,
@@ -49,6 +49,7 @@ class EditPlan extends Component {
       foodPlanInput: "",
       sleepPlanInput: "",
       miscPlanInput: "",
+      weightInput: "",
       deletePlanOpen: false
     };
   }
@@ -65,6 +66,7 @@ class EditPlan extends Component {
       foodPlan: this.state.foodPlanInput,
       sleepPlan: this.state.sleepPlanInput,
       miscPlan: this.state.miscPlanInput,
+      weight: this.state.weightInput,
       goalId: this.props.currentPlan.goalId
     };
     const auth = { headers: { authorization: token } };
@@ -75,7 +77,8 @@ class EditPlan extends Component {
           exercisePlanInput: "",
           foodPlanInput: "",
           sleepPlanInput: "",
-          miscPlanInput: ""
+          miscPlanInput: "",
+          weightInput: ""
         });
         this.props.handleCloseEditPlan();
         this.props.refresh();
@@ -91,7 +94,8 @@ class EditPlan extends Component {
       exercisePlanInput: this.props.currentPlan.exercisePlan,
       foodPlanInput: this.props.currentPlan.foodPlan,
       sleepPlanInput: this.props.currentPlan.sleepPlan,
-      miscPlanInput: this.props.currentPlan.miscPlan
+      miscPlanInput: this.props.currentPlan.miscPlan,
+      weightInput: this.props.currentPlan.weight
     });
   };
 
@@ -102,7 +106,8 @@ class EditPlan extends Component {
       exercisePlanInput: "",
       foodPlanInput: "",
       sleepPlanInput: "",
-      miscPlanInput: ""
+      miscPlanInput: "",
+      weightInput: ""
     });
   };
 
@@ -200,6 +205,12 @@ class EditPlan extends Component {
                   variant="outlined"
                   color="primary"
                 />
+                <Chip
+                  className={classes.chip}
+                  label={`End Date: ${this.props.currentPlan.toDate}`}
+                  variant="outlined"
+                  color="primary"
+                />
               </Grid>
             </Grid>
             <Grid container>
@@ -236,11 +247,16 @@ class EditPlan extends Component {
                 />
               </Grid>
               <Grid className={classes.endGrid} item xs={4}>
-                <Chip
-                  className={classes.chip}
-                  label={`End Date: ${this.props.currentPlan.toDate}`}
+                <TextField
+                  className={classes.textField}
+                  type="number"
+                  label="Update current weight"
                   variant="outlined"
-                  color="primary"
+                  margin="dense"
+                  name="weightInput"
+                  placeholder={this.props.currentPlan.weight}
+                  value={this.state.weightInput}
+                  onChange={this.editFormHandler}
                 />
                 <DialogActions>
                   <Button
