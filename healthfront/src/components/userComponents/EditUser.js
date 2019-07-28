@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Axios from "axios";
+import ConfirmEditUser from "./ConfirmEditUser";
 //
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -55,8 +56,11 @@ class EditUser extends Component {
   };
   // confirm edit user
   handleConfirmEditUserOpen = () => {
+    if (!this.state.usernameInput || !this.state.passwordInput) {
+      return alert("Must have username and password fields filled");
+    }
     if (this.state.passwordInput !== this.state.confirmPasswordInput) {
-      alert("Passwords do not match");
+      return alert("Passwords do not match");
     } else {
       this.setState({
         ...this.state,
@@ -72,7 +76,33 @@ class EditUser extends Component {
   };
   //
   submitUpdateUser = () => {
-    console.log("fired");
+    const token = localStorage.getItem("token");
+    let updatedUser = {};
+    if (this.state.passwordInput) {
+      updatedUser = {
+        username: this.state.usernameInput,
+        password: this.state.passwordInput
+      };
+    } else {
+      updatedUser = {
+        username: this.state.usernameInput
+      };
+    }
+    const auth = { headers: { authorization: token } };
+    Axios.put("http://localhost:9000/user/edit", updatedUser, auth).then(
+      res => {
+        console.log(res.status);
+        localStorage.setItem("token", res.data);
+        this.setState({
+          usernameInput: "",
+          passwordInput: "",
+          confirmPasswordInput: ""
+        });
+        this.handleConfirmEditUserClose();
+        this.props.handleCloseEditUser();
+        this.props.refresh();
+      }
+    );
   };
 
   render() {
@@ -88,9 +118,7 @@ class EditUser extends Component {
           aria-labelledby="edit-user-title"
         >
           <DialogTitle id="edit-user-title">
-            <Typography variant="h6">
-              Edit User Information of: {this.props.username}
-            </Typography>
+            Edit User Information of: {this.props.username}
           </DialogTitle>
           <Divider />
           <DialogContent className={classes.bodyContainer}>
@@ -140,6 +168,12 @@ class EditUser extends Component {
             </DialogActions>
           </DialogContent>
         </Dialog>
+        <ConfirmEditUser
+          username={this.props.username}
+          confirmEditUserOpen={this.state.confirmEditUserOpen}
+          handleConfirmEditUserClose={this.handleConfirmEditUserClose}
+          submitUpdateUser={this.submitUpdateUser}
+        />
       </div>
     );
   }
