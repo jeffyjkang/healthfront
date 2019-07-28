@@ -8,6 +8,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Typography from "@material-ui/core/Typography";
 import CreateNewFolderIcon from "@material-ui/icons/CreateNewFolder";
+import SettingsIcon from "@material-ui/icons/Settings";
 import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 //
 import DatePicker from "react-datepicker";
@@ -47,18 +48,6 @@ const NavBar = props => {
   function handleClose2() {
     setAnchorEl2(null);
   }
-  // function onMonth(e) {
-  //   console.log(e);
-  // }
-  // function onWeek(e) {
-  //   console.log(e);
-  // }
-  // function onDay(e) {
-  //   console.log(e);
-  // }
-  // function onChange(e) {
-  //   console.log(e);
-  // }
   return (
     <div className={classes.container}>
       <AppBar position="static">
@@ -99,22 +88,21 @@ const NavBar = props => {
             onClose={handleClose2}
           >
             <MenuItem>
-              {/* <Calendar
-                view="year"
-                maxDetail="year"
-                minDetail="decade"
-                onClickMonth={props.onMonth}
-              /> */}
-              <DatePicker
-                showMonthYearPicker
-                inline
-                onChange={props.onMonth}
-                // onChange={props.onMonth}
-              />
+              <DatePicker showMonthYearPicker inline onChange={props.onMonth} />
             </MenuItem>
           </Menu>
           <Typography variant="h2">Health Logger</Typography>
-          <Typography variant="h6">Welcome : {props.username}</Typography>
+          <Button
+            className={classes.button}
+            variant="contained"
+            color="primary"
+            onClick={props.handleOpenEditUser}
+          >
+            <SettingsIcon />{" "}
+            <Typography variant="button">
+              Edit user: {props.username}
+            </Typography>
+          </Button>
           <Button
             className={classes.button}
             variant="contained"
