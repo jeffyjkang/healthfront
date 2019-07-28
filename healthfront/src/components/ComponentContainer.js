@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import NavBar from "./navbar/NavBar";
 import { withStyles } from "@material-ui/core/styles";
 //
+import EditUser from "./userComponents/EditUser";
+//
 import CreateGoal from "./goalComponents/CreateGoal";
 import EditGoal from "./goalComponents/EditGoal";
 import PageContainer from "./pageComponents/PageContainer";
@@ -31,6 +33,8 @@ class ComponentContainer extends Component {
     this.state = {
       id: "",
       username: "",
+      //
+      editUserOpen: false,
       //
       createGoalOpen: false,
       editGoalOpen: false,
@@ -95,6 +99,16 @@ class ComponentContainer extends Component {
     e.preventDefault();
     localStorage.removeItem("token");
     this.props.logOut();
+  };
+  // edit user
+  handleOpenEditUser = () => {
+    this.setState({
+      ...this.state,
+      editUserOpen: true
+    });
+  };
+  handleCloseEditUser = () => {
+    this.setState({ ...this.state, editUserOpen: false });
   };
   // create goal
   onMonth = e => {
@@ -188,6 +202,13 @@ class ComponentContainer extends Component {
           id={this.state.id}
           username={this.state.username}
           onMonth={this.onMonth}
+          handleOpenEditUser={this.handleOpenEditUser}
+        />
+        <EditUser
+          username={this.state.username}
+          editUserOpen={this.state.editUserOpen}
+          handleCloseEditUser={this.handleCloseEditUser}
+          refresh={this.refresh}
         />
         <CreateGoal
           cMonthValue={this.state.cMonthValue}

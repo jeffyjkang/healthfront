@@ -36,9 +36,6 @@ const styles = () => ({
   cssLabel: {
     color: "white"
   },
-  placeholder: {
-    color: "white"
-  },
   cssOutlinedInput: {
     color: "white"
   }
