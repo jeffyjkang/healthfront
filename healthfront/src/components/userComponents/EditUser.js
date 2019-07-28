@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Axios from "axios";
 //
 import { withStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -15,6 +14,14 @@ import Divider from "@material-ui/core/Divider";
 const styles = () => ({
   container: {
     display: "flex"
+  },
+  bodyContainer: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center"
+  },
+  textField: {
+    alignSelf: "center"
   }
 });
 
@@ -24,18 +31,14 @@ class EditUser extends Component {
     this.state = {
       usernameInput: "",
       passwordInput: "",
-      confirmPasswordInput: ""
+      confirmPasswordInput: "",
+      confirmEditUserOpen: false
     };
   }
 
   editFormHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
-
-  submitUpdateUser = () => {
-    console.log("fired");
-  };
-
   onEnterUserEdit = () => {
     this.setState({
       ...this.state,
@@ -46,8 +49,30 @@ class EditUser extends Component {
     this.setState({
       usernameInput: "",
       passwordInput: "",
-      confirmPasswordInput: ""
+      confirmPasswordInput: "",
+      confirmEditUserOpen: false
     });
+  };
+  // confirm edit user
+  handleConfirmEditUserOpen = () => {
+    if (this.state.passwordInput !== this.state.confirmPasswordInput) {
+      alert("Passwords do not match");
+    } else {
+      this.setState({
+        ...this.state,
+        confirmEditUserOpen: true
+      });
+    }
+  };
+  handleConfirmEditUserClose = () => {
+    this.setState({
+      ...this.state,
+      confirmEditUserOpen: false
+    });
+  };
+  //
+  submitUpdateUser = () => {
+    console.log("fired");
   };
 
   render() {
@@ -55,16 +80,65 @@ class EditUser extends Component {
     return (
       <div>
         <Dialog
-          maxWidth={"md"}
+          maxWidth={"sm"}
           open={this.props.editUserOpen}
           onClose={this.props.handleCloseEditUser}
           onEnter={this.onEnterUserEdit}
           onExit={this.onExitUserEdit}
           aria-labelledby="edit-user-title"
         >
-          <DialogTitle id="edit-user-title">Edit User Information</DialogTitle>
+          <DialogTitle id="edit-user-title">
+            <Typography variant="h6">
+              Edit User Information of: {this.props.username}
+            </Typography>
+          </DialogTitle>
           <Divider />
-          <DialogContent />
+          <DialogContent className={classes.bodyContainer}>
+            <TextField
+              className={classes.textField}
+              type="string"
+              label="Change Username"
+              variant="outlined"
+              margin="dense"
+              name="usernameInput"
+              placeholder={this.props.username}
+              value={this.state.usernameInput}
+              onChange={this.editFormHandler}
+              required
+            />
+            <TextField
+              className={classes.textField}
+              type="password"
+              label="Change Password"
+              variant="outlined"
+              margin="dense"
+              name="passwordInput"
+              value={this.state.passwordInput}
+              onChange={this.editFormHandler}
+            />
+            <TextField
+              className={classes.textField}
+              type="password"
+              label="Confirm Change Password"
+              variant="outlined"
+              margin="dense"
+              name="confirmPasswordInput"
+              value={this.state.confirmPasswordInput}
+              onChange={this.editFormHandler}
+            />
+            <DialogActions>
+              <Button
+                className={classes.button}
+                variant="contained"
+                color="primary"
+                onClick={this.handleConfirmEditUserOpen}
+              >
+                <Typography variant="button">
+                  Upadte User Infomration
+                </Typography>
+              </Button>
+            </DialogActions>
+          </DialogContent>
         </Dialog>
       </div>
     );
