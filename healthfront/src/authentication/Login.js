@@ -7,7 +7,15 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import PersonIcon from "@material-ui/icons/Person";
 //
+import LoginBackground from "../images/LoginBackground.jpg";
+
+//
 const styles = () => ({
+  background: {
+    backgroundImage: `url(${LoginBackground})`,
+    backgroundSize: "cover",
+    color: "white"
+  },
   container: {
     minHeight: "100vh",
     display: "flex",
@@ -21,6 +29,18 @@ const styles = () => ({
   button: {
     height: 60,
     margin: 10
+  },
+  notchedOutline: {
+    borderColor: "white"
+  },
+  cssLabel: {
+    color: "white"
+  },
+  placeholder: {
+    color: "white"
+  },
+  cssOutlinedInput: {
+    color: "white"
   }
 });
 
@@ -55,7 +75,7 @@ class Login extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
+      <div className={classes.background}>
         <form className={classes.container} onSubmit={this.loginSubmit}>
           <Typography variant="h3">Health Logger</Typography>
           <Typography variant="h6">Login</Typography>
@@ -69,6 +89,17 @@ class Login extends Component {
             variant="outlined"
             label="Username"
             required
+            InputLabelProps={{
+              classes: {
+                root: classes.cssLabel
+              }
+            }}
+            InputProps={{
+              classes: {
+                root: classes.cssOutlinedInput,
+                notchedOutline: classes.notchedOutline
+              }
+            }}
           />
           <TextField
             className={classes.textField}
@@ -80,6 +111,17 @@ class Login extends Component {
             variant="outlined"
             label="Password"
             required
+            InputLabelProps={{
+              classes: {
+                root: classes.cssLabel
+              }
+            }}
+            InputProps={{
+              classes: {
+                root: classes.cssOutlinedInput,
+                notchedOutline: classes.notchedOutline
+              }
+            }}
           />
           <Button
             type="submit"
