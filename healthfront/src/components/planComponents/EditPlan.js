@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Axios from "axios";
 import DeletePlan from "./DeletePlan";
+import { toast } from "react-toastify";
 //
 import { withStyles } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
@@ -73,6 +74,7 @@ class EditPlan extends Component {
     Axios.put(`http://localhost:9000/plan/${id}`, updatedPlan, auth)
       .then(res => {
         console.log(res.status);
+        toast.success("Successfully Edited Plan");
         this.setState({
           exercisePlanInput: "",
           foodPlanInput: "",
@@ -83,7 +85,10 @@ class EditPlan extends Component {
         this.props.handleCloseEditPlan();
         this.props.refresh();
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log(error);
+        toast.error("Error Editing Plan");
+      });
   };
 
   onEnterPlanEdit = () => {
@@ -131,11 +136,15 @@ class EditPlan extends Component {
     Axios.delete(`http://localhost:9000/plan/${id}`, auth)
       .then(res => {
         console.log(res.status);
+        toast.success("Successfully Deleted Plan");
         this.handleCloseDeletePlan();
         this.props.handleCloseEditPlan();
         this.props.refresh();
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log(error);
+        toast.error("Error Deleting Plan");
+      });
   };
   //
   render() {

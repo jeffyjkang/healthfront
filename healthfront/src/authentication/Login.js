@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import PersonIcon from "@material-ui/icons/Person";
 //
 import LoginBackground from "../images/LoginBackground.jpg";
+import { toast } from "react-toastify";
 
 //
 const styles = () => ({
@@ -62,11 +63,12 @@ class Login extends Component {
       .then(res => {
         const token = res.data;
         localStorage.setItem("token", token);
+        toast.info("Login Successful");
         this.props.refresh();
       })
       .catch(error => {
         console.log(error);
-        return alert("Bad login Credentials.");
+        toast.error("Bad Login Crednetials");
       });
   };
   render() {

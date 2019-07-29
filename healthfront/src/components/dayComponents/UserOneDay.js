@@ -69,12 +69,12 @@ const UserOneDay = props => {
   const open2 = Boolean(anchorEl2);
   const open3 = Boolean(anchorEl3);
   const open4 = Boolean(anchorEl4);
-
+  //
   const id1 = open1 ? "simple-popper1" : undefined;
   const id2 = open2 ? "simple-popper2" : undefined;
   const id3 = open3 ? "simple-popper3" : undefined;
   const id4 = open4 ? "simple-popper4" : undefined;
-  //   console.log(props);
+  //
   return (
     <div>
       <Card className={classes.card}>

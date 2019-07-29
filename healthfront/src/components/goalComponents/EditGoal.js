@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Axios from "axios";
 import DeleteGoal from "./DeleteGoal";
+import { toast } from "react-toastify";
 //
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -75,6 +76,7 @@ class EditGoal extends Component {
     Axios.put(`http://localhost:9000/goal/${id}`, updatedGoal, auth)
       .then(res => {
         console.log(res.status);
+        toast.success("Successfully Edited Goal");
         this.setState({
           weightInput: "",
           exerciseGoalInput: "",
@@ -85,7 +87,10 @@ class EditGoal extends Component {
         this.props.handleCloseEditGoal();
         this.props.refresh();
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log(error);
+        toast.error("Error Editing Goal");
+      });
   };
 
   onEnterGoalEdit = () => {
@@ -130,11 +135,15 @@ class EditGoal extends Component {
     Axios.delete(`http://localhost:9000/goal/${id}`, auth)
       .then(res => {
         console.log(res.status);
+        toast.success("Successfully Deleted Goal");
         this.handleCloseDeleteGoal();
         this.props.handleCloseEditGoal();
         this.props.refresh();
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log(error);
+        toast.error("Error Deleting Goal");
+      });
   };
   //
   render() {

@@ -12,7 +12,6 @@ import UserOneDayContainer from "../dayComponents/UserOneDayContainer";
 const styles = () => ({
   container: {
     border: "1px solid #3F51B5",
-    // height: 150,
     display: "flex"
   },
   paperContainer: {
@@ -37,7 +36,6 @@ const styles = () => ({
 
 const UserOnePlan = props => {
   const { classes } = props;
-  // console.log(props);
   return (
     <div className={classes.container}>
       <Paper className={classes.paperContainer}>
@@ -85,7 +83,6 @@ const UserOnePlan = props => {
               <Typography variant="button">View Plan</Typography>
               <PageViewIcon />
             </Button>
-
             <Button
               className={classes.button}
               variant="contained"

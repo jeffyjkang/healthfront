@@ -14,8 +14,6 @@ const styles = () => ({
 const PageContainer = props => {
   const { classes } = props;
 
-  // console.log(props);
-
   return (
     <div className={classes.container}>
       <Grid container>

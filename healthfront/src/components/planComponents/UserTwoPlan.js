@@ -12,7 +12,6 @@ import UserTwoDayContainer from "../dayComponents/UserTwoDayContainer";
 const styles = () => ({
   container: {
     border: "1px solid #3F51B5",
-    // height: 150,
     display: "flex"
   },
   paperContainer: {
@@ -37,7 +36,6 @@ const styles = () => ({
 
 const UserTwoPlan = props => {
   const { classes } = props;
-  //   console.log(props);
   return (
     <div className={classes.container}>
       <Paper className={classes.paperContainer}>
@@ -85,7 +83,6 @@ const UserTwoPlan = props => {
               <Typography variant="button">View Plan</Typography>
               <PageViewIcon />
             </Button>
-
             <Button
               className={classes.button}
               variant="contained"
