@@ -6,8 +6,7 @@ import UserTwoGoalsContainer from "../goalComponents/UserTwoGoalsContainer";
 
 const styles = () => ({
   container: {
-    minWidth: "98vw",
-    border: "1px solid #3F51B5"
+    minWidth: "98vw"
   }
 });
 

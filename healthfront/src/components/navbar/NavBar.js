@@ -17,7 +17,12 @@ import "react-datepicker/dist/react-datepicker.css";
 const styles = () => ({
   container: {
     minWidth: "98vw",
-    margin: 10
+    marginTop: "1rem",
+    marginBottom: "2rem"
+  },
+  appBar: {
+    borderRadius: 4,
+    border: "1px solid white"
   },
   toolbar: {
     display: "flex",
@@ -28,7 +33,8 @@ const styles = () => ({
     margin: 10,
     color: "white",
     boxShadow:
-      "0px 1px 5px 0px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 3px 1px -2px rgba(0,0,0,0.12);"
+      "0px 1px 5px 0px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 3px 1px -2px rgba(0,0,0,0.12);",
+    border: "1px solid white"
   }
 });
 
@@ -50,7 +56,7 @@ const NavBar = props => {
   }
   return (
     <div className={classes.container}>
-      <AppBar position="static">
+      <AppBar className={classes.appBar} position="static">
         <Toolbar className={classes.toolbar}>
           <Button
             className={classes.button}

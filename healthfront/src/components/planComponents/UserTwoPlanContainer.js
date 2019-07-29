@@ -4,7 +4,7 @@ import UserTwoPlan from "./UserTwoPlan";
 
 const styles = () => ({
   container: {
-    border: "1px solid #3F51B5"
+    //
   }
 });
 

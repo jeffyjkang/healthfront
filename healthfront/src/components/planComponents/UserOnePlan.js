@@ -12,7 +12,9 @@ import UserOneDayContainer from "../dayComponents/UserOneDayContainer";
 const styles = () => ({
   container: {
     border: "1px solid #3F51B5",
-    display: "flex"
+    display: "flex",
+    marginBottom: ".5rem",
+    marginTop: ".5rem"
   },
   paperContainer: {
     minWidth: "100%"
@@ -28,6 +30,9 @@ const styles = () => ({
   },
   button: {
     margin: 3
+  },
+  caption: {
+    marginLeft: ".5rem"
   },
   chip: {
     margin: 3
@@ -47,14 +52,18 @@ const UserOnePlan = props => {
               color="primary"
               label="Plan"
             />
-            <Typography variant="caption">From:</Typography>
+            <Typography className={classes.caption} variant="caption">
+              From:
+            </Typography>
             <Chip
               className={classes.chip}
               variant="outlined"
               color="primary"
               label={props.userOnePlan.fromDate}
             />
-            <Typography variant="caption">To:</Typography>
+            <Typography className={classes.caption} variant="caption">
+              To:
+            </Typography>
             <Chip
               className={classes.chip}
               variant="outlined"
