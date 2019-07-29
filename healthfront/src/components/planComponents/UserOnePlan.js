@@ -11,7 +11,8 @@ import UserOneDayContainer from "../dayComponents/UserOneDayContainer";
 
 const styles = () => ({
   container: {
-    border: "1px solid #3F51B5",
+    borderTop: "1px solid #3F51B5",
+    borderBottom: "1px solid #3F51B5",
     display: "flex",
     marginBottom: ".5rem",
     marginTop: ".5rem"
