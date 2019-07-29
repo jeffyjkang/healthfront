@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Axios from "axios";
+import { toast } from "react-toastify";
 //
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -77,6 +78,7 @@ class EditDay extends Component {
     Axios.put(`http://localhost:9000/day/${id}`, updatedDay, auth)
       .then(res => {
         console.log(res.status);
+        toast.success("Successfully Edited Day Log");
         this.setState({
           date: "",
           exerciseComplete: false,
@@ -91,7 +93,10 @@ class EditDay extends Component {
         this.props.handleCloseEditDay();
         this.props.refresh();
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log(error);
+        toast.error("Error Editing Day Log");
+      });
   };
 
   onEnterDayEdit = () => {
@@ -133,7 +138,6 @@ class EditDay extends Component {
 
   render() {
     const { classes } = this.props;
-    // console.log(this.props);
     return (
       <div>
         <Dialog
@@ -185,7 +189,6 @@ class EditDay extends Component {
                     color="primary"
                   />
                 </Typography>
-
                 <TextField
                   className={classes.textField}
                   type="string"

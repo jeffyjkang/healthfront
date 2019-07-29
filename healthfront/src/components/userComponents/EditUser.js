@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Axios from "axios";
 import ConfirmEditUser from "./ConfirmEditUser";
+import { toast } from "react-toastify";
 //
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -57,10 +58,10 @@ class EditUser extends Component {
   // confirm edit user
   handleConfirmEditUserOpen = () => {
     if (!this.state.usernameInput || !this.state.passwordInput) {
-      return alert("Must have username and password fields filled");
+      return toast.error("All Fields Must Be Filled");
     }
     if (this.state.passwordInput !== this.state.confirmPasswordInput) {
-      return alert("Passwords do not match");
+      return toast.error("Passwords Do Not Match");
     } else {
       this.setState({
         ...this.state,
@@ -77,21 +78,15 @@ class EditUser extends Component {
   //
   submitUpdateUser = () => {
     const token = localStorage.getItem("token");
-    let updatedUser = {};
-    if (this.state.passwordInput) {
-      updatedUser = {
-        username: this.state.usernameInput,
-        password: this.state.passwordInput
-      };
-    } else {
-      updatedUser = {
-        username: this.state.usernameInput
-      };
-    }
+    const updatedUser = {
+      username: this.state.usernameInput,
+      password: this.state.passwordInput
+    };
     const auth = { headers: { authorization: token } };
-    Axios.put("http://localhost:9000/user/edit", updatedUser, auth).then(
-      res => {
+    Axios.put("http://localhost:9000/user/edit", updatedUser, auth)
+      .then(res => {
         console.log(res.status);
+        toast.success("User Info Sucessfully Updated");
         localStorage.setItem("token", res.data);
         this.setState({
           usernameInput: "",
@@ -101,8 +96,11 @@ class EditUser extends Component {
         this.handleConfirmEditUserClose();
         this.props.handleCloseEditUser();
         this.props.refresh();
-      }
-    );
+      })
+      .catch(error => {
+        console.log(error);
+        toast.error("Error Updating User Info");
+      });
   };
 
   render() {

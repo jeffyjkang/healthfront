@@ -1,11 +1,8 @@
 import React from "react";
+//
 import { withStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
-// import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
-// import ListItem from "@material-ui/core/ListItem";
-// import ListItemIcon from "@material-ui/core/ListItemIcon";
-// import ListItemText from "@material-ui/core/ListItemText";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
@@ -39,7 +36,6 @@ const styles = () => ({
 
 const PlanView = props => {
   const { classes } = props;
-  //   console.log(props);
   const info = props => (
     <div>
       <Typography className={classes.header} variant="h3">

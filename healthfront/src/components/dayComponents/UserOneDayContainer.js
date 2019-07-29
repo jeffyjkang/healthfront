@@ -12,7 +12,6 @@ const styles = () => ({
 
 const UserOneDayContainer = props => {
   const { classes } = props;
-  //   console.log(props);
   return (
     <div className={classes.container}>
       {props.days.map(userOneDay => (

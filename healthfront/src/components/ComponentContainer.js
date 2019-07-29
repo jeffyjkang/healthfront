@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import NavBar from "./navbar/NavBar";
+import { toast } from "react-toastify";
 import { withStyles } from "@material-ui/core/styles";
 //
 import EditUser from "./userComponents/EditUser";
@@ -59,8 +60,7 @@ class ComponentContainer extends Component {
     if (token) {
       jwt.verify(token, secret, (error, decodedToken) => {
         if (error) {
-          return alert("Failed decoding token");
-          // console.log(error);
+          toast.error("Failed Decoding Token");
         } else {
           const auth = { headers: { authorization: token } };
           Axios.get("http://localhost:9000/goal", auth).then(res => {
@@ -75,8 +75,6 @@ class ComponentContainer extends Component {
                 userTwoGoals.push(goals[i]);
               }
             }
-            // console.log("u1g", userOneGoals);
-            // console.log("u2g", userTwoGoals);
             this.setState({
               ...this.state,
               id: decodedToken.id,
@@ -85,7 +83,6 @@ class ComponentContainer extends Component {
               userTwoGoals
             });
           });
-          //
         }
       });
     }
@@ -122,7 +119,7 @@ class ComponentContainer extends Component {
   // edit goal
   handleOpenEditGoal = goal => {
     if (this.state.id !== goal.userId) {
-      return alert("You are not authorized to modify another user's goals.");
+      toast.warn("You are not authorized to modify another user's goals");
     } else {
       this.setState({
         ...this.state,
@@ -137,7 +134,9 @@ class ComponentContainer extends Component {
   // create plan
   handleOpenCreatePlan = goal => {
     if (this.state.id !== goal.userId) {
-      return alert("You are not authorized to add another user's weekly plan.");
+      toast.warn(
+        "You are not authorized to add to another user's weekly plans"
+      );
     } else {
       const cGoalId = goal.id;
       this.setState({ ...this.state, cGoalId, createPlanOpen: true });
@@ -165,7 +164,7 @@ class ComponentContainer extends Component {
   // edit plan
   handleOpenEditPlan = plan => {
     if (this.state.id !== plan.userId) {
-      return alert("You are not authorized to modify another user's plans.");
+      toast.warn("You are not authorized to modify another user's plans");
     } else {
       this.setState({
         ...this.state,
@@ -180,7 +179,7 @@ class ComponentContainer extends Component {
   // edit day
   handleOpenEditDay = day => {
     if (this.state.id !== day.userId) {
-      return alert("You are not authorized to modify another user's day log.");
+      toast.warn("You are not authorized to modify another user's daily logs");
     } else {
       this.setState({
         ...this.state,

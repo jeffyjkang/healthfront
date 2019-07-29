@@ -15,7 +15,6 @@ import UserTwoPlanContainer from "../planComponents/UserTwoPlanContainer";
 const styles = () => ({
   container: {
     border: "1px solid #3F51B5",
-    // height: 100,
     display: "flex",
     justifyContent: "center",
     alignItems: "center"
@@ -40,7 +39,6 @@ const styles = () => ({
 
 const UserTwoGoal = props => {
   const { classes } = props;
-  // console.log(props);
   return (
     <div className={classes.container}>
       <Paper className={classes.paper}>

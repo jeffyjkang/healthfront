@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import jwt from "jsonwebtoken";
+import { toast } from "react-toastify";
 const secret = process.env.REACT_APP_SECRET;
 
 const Authenticate = ComponentContainer => Login =>
@@ -18,20 +19,16 @@ const Authenticate = ComponentContainer => Login =>
             this.setState({ loggedIn: true });
           }
           if (error) {
+            localStorage.removeItem("token");
             this.setState({ loggedIn: false });
           }
         });
       } else {
         this.setState({ loggedIn: false });
       }
-      // if (localStorage.getItem("token")) {
-      //   this.setState({ loggedIn: true });
-      // } else {
-      //   this.setState({ loggedIn: false });
-      // }
     }
     logOut = () => {
-      localStorage.removeItem("token");
+      toast.info("Logout Successful");
       this.setState({ loggedIn: false });
     };
     refresh = () => {

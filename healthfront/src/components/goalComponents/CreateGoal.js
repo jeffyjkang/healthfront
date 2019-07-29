@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Axios from "axios";
+import { toast } from "react-toastify";
 //
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -68,6 +69,7 @@ class CreateGoal extends Component {
     Axios.post("http://localhost:9000/goal", newGoal, auth)
       .then(res => {
         console.log(res.status);
+        toast.success("Goal Created");
         this.setState({
           weightInput: "",
           exerciseGoalInput: "",
@@ -78,7 +80,10 @@ class CreateGoal extends Component {
         this.props.handleCloseCreateGoal();
         this.props.refresh();
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log(error);
+        toast.error("Error Creating Goal");
+      });
   };
 
   onExitGoalCreate = () => {

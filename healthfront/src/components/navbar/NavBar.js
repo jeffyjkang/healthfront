@@ -119,6 +119,4 @@ const NavBar = props => {
   );
 };
 
-// export default NavBar;
-
 export default withStyles(styles)(NavBar);

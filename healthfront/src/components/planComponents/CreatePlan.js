@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Axios from "axios";
+import { toast } from "react-toastify";
 //
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -75,9 +76,8 @@ class CreatePlan extends Component {
   };
 
   submitCreatePlan = () => {
-    console.log(this.props);
     if (this.state.startDateVal === "No Val") {
-      return alert("Must pick a start Date to submit a plan.");
+      return toast.error("You must pick a start date to submit a plan");
     }
     const token = localStorage.getItem("token");
     const newPlan = {
@@ -94,6 +94,7 @@ class CreatePlan extends Component {
     Axios.post("http://localhost:9000/plan", newPlan, auth)
       .then(res => {
         console.log(res.status);
+        toast.success("Plan created");
         this.setState({
           startDate: null,
           endDate: null,
@@ -108,7 +109,10 @@ class CreatePlan extends Component {
         this.props.handleCloseCreatePlan();
         this.props.refresh();
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log(error);
+        toast.error("Error Creating Plan");
+      });
   };
 
   onExitPlanCreate = () => {
@@ -127,8 +131,6 @@ class CreatePlan extends Component {
 
   render() {
     const { classes } = this.props;
-    // console.log(this.props);
-    // console.log(this.state);
     return (
       <div>
         <Dialog

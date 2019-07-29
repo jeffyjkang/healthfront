@@ -10,7 +10,6 @@ const styles = () => ({
 
 const userTwoPlanContainer = props => {
   const { classes } = props;
-  // console.log(props);
   return (
     <div className={classes.container}>
       {props.plans.map(userTwoPlan => (
