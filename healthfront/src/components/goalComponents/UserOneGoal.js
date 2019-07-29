@@ -17,23 +17,29 @@ const styles = () => ({
     border: "1px solid #3F51B5",
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    marginBottom: "2rem"
   },
   paper: {
-    width: "98%"
+    width: "100%"
   },
   headerContainer: {
-    margin: "auto"
+    margin: "auto",
+    padding: ".5rem",
+    borderBottom: "1px solid #3F51B5"
   },
   dateContainer: {
     textAlign: "center"
   },
   weightContainer: {
     textAlign: "center",
-    marginTop: 5
+    marginTop: ".5rem"
   },
   buttonContainer: {
     textAlign: "end"
+  },
+  footerContainer: {
+    borderTop: "1px solid #3F51B5"
   }
 });
 
@@ -84,7 +90,7 @@ const UserOneGoal = props => {
             />
           </Grid>
         </Grid>
-        <Grid container>
+        <Grid className={classes.footerContainer} container>
           <Grid item xs={3}>
             <ExpansionPanel>
               <ExpansionPanelSummary

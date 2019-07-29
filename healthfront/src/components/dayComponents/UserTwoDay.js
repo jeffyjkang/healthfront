@@ -19,7 +19,6 @@ import BuildIcon from "@material-ui/icons/Build";
 
 const styles = () => ({
   container: {
-    border: "1px solid #3F51B5",
     display: "flex"
   },
   button: {
@@ -29,7 +28,7 @@ const styles = () => ({
     width: 106
   },
   card: {
-    border: "2px solid #3F51B5"
+    border: "1px solid #3F51B5"
   }
 });
 

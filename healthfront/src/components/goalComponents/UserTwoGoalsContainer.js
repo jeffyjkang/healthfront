@@ -4,7 +4,7 @@ import UserTwoGoal from "./UserTwoGoal";
 
 const styles = () => ({
   container: {
-    border: "1px solid #3F51B5"
+    margin: ".25rem"
   }
 });
 

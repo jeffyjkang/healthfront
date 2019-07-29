@@ -4,7 +4,6 @@ import UserTwoDay from "./UserTwoDay";
 
 const styles = () => ({
   container: {
-    border: "1px solid #3F51B5",
     display: "flex",
     justifyContent: "space-around"
   }
