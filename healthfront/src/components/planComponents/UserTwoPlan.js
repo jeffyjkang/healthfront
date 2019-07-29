@@ -11,10 +11,13 @@ import UserTwoDayContainer from "../dayComponents/UserTwoDayContainer";
 
 const styles = () => ({
   container: {
-    border: "1px solid #3F51B5",
+    borderTop: "1px dashed #3F51B5",
+    borderBottom: "1px dashed #3F51B5",
+    paddingTop: "1rem",
+    paddingBottom: "1rem",
     display: "flex",
-    marginBottom: ".5rem",
-    marginTop: ".5rem"
+    marginBottom: "1rem",
+    marginTop: "1rem"
   },
   paperContainer: {
     minWidth: "100%"

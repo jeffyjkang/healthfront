@@ -28,7 +28,7 @@ const styles = () => ({
     minWidth: 106
   },
   card: {
-    border: "1px solid #3F51B5"
+    border: "2px ridge #3F51B5"
   }
 });
 
