@@ -14,6 +14,8 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import AddBoxIcon from "@material-ui/icons/AddBox";
+//
+const url = process.env.REACT_APP_URL;
 
 const styles = () => ({
   container: {
@@ -66,7 +68,7 @@ class CreateGoal extends Component {
       miscGoal: this.state.miscGoalInput
     };
     const auth = { headers: { authorization: token } };
-    Axios.post("http://localhost:9000/goal", newGoal, auth)
+    Axios.post(`${url}/goal`, newGoal, auth)
       .then(res => {
         console.log(res.status);
         toast.success("Goal Created");

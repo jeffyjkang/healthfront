@@ -18,6 +18,8 @@ import Divider from "@material-ui/core/Divider";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { addDays } from "date-fns/esm";
+//
+const url = process.env.REACT_APP_URL;
 
 const styles = () => ({
   container: {
@@ -91,7 +93,7 @@ class CreatePlan extends Component {
       goalId: this.props.cGoalId
     };
     const auth = { headers: { authorization: token } };
-    Axios.post("http://localhost:9000/plan", newPlan, auth)
+    Axios.post(`${url}/plan`, newPlan, auth)
       .then(res => {
         console.log(res.status);
         toast.success("Plan created");

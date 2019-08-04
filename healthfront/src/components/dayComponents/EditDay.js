@@ -14,6 +14,8 @@ import Typography from "@material-ui/core/Typography";
 import Checkbox from "@material-ui/core/Checkbox";
 import Divider from "@material-ui/core/Divider";
 import DoneOutlineIcon from "@material-ui/icons/DoneOutline";
+//
+const url = process.env.REACT_APP_URL;
 
 const styles = () => ({
   container: {
@@ -75,7 +77,7 @@ class EditDay extends Component {
       planId: this.props.currentDay.planId
     };
     const auth = { headers: { authorization: token } };
-    Axios.put(`http://localhost:9000/day/${id}`, updatedDay, auth)
+    Axios.put(`${url}/day/${id}`, updatedDay, auth)
       .then(res => {
         console.log(res.status);
         toast.success("Successfully Edited Day Log");

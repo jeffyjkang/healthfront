@@ -18,6 +18,7 @@ import EditDay from "./dayComponents/EditDay";
 import jwt from "jsonwebtoken";
 import Axios from "axios";
 const secret = process.env.REACT_APP_SECRET;
+const url = process.env.REACT_APP_URL;
 
 const styles = () => ({
   container: {
@@ -63,7 +64,7 @@ class ComponentContainer extends Component {
           toast.error("Failed Decoding Token");
         } else {
           const auth = { headers: { authorization: token } };
-          Axios.get("http://localhost:9000/goal", auth).then(res => {
+          Axios.get(`${url}/goal`, auth).then(res => {
             const goals = res.data;
             const userOneGoals = [];
             const userTwoGoals = [];

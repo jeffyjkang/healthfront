@@ -18,7 +18,7 @@ class App extends Component {
         <AuthComponent />
         <ToastContainer
           position="bottom-center"
-          autoClose={2000}
+          autoClose={2500}
           closeOnClick
         />
       </div>

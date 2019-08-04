@@ -16,6 +16,8 @@ import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
+//
+const url = process.env.REACT_APP_URL;
 
 const styles = () => ({
   container: {
@@ -73,7 +75,7 @@ class EditGoal extends Component {
       miscGoal: this.state.miscGoalInput
     };
     const auth = { headers: { authorization: token } };
-    Axios.put(`http://localhost:9000/goal/${id}`, updatedGoal, auth)
+    Axios.put(`${url}/goal/${id}`, updatedGoal, auth)
       .then(res => {
         console.log(res.status);
         toast.success("Successfully Edited Goal");
@@ -132,7 +134,7 @@ class EditGoal extends Component {
     const token = localStorage.getItem("token");
     const id = this.props.currentGoal.id;
     const auth = { headers: { authorization: token } };
-    Axios.delete(`http://localhost:9000/goal/${id}`, auth)
+    Axios.delete(`${url}/goal/${id}`, auth)
       .then(res => {
         console.log(res.status);
         toast.success("Successfully Deleted Goal");
