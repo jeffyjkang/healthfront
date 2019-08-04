@@ -9,8 +9,8 @@ import PersonIcon from "@material-ui/icons/Person";
 //
 import LoginBackground from "../images/LoginBackground.jpg";
 import { toast } from "react-toastify";
-
 //
+const url = process.env.REACT_APP_URL;
 const styles = () => ({
   background: {
     backgroundImage: `url(${LoginBackground})`,
@@ -59,7 +59,7 @@ class Login extends Component {
       username: this.state.usernameInput,
       password: this.state.passwordInput
     };
-    Axios.post("http://localhost:9000/user/login", user)
+    Axios.post(`${url}/user/login`, user)
       .then(res => {
         const token = res.data;
         localStorage.setItem("token", token);

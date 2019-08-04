@@ -12,6 +12,8 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
+//
+const url = process.env.REACT_APP_URL;
 
 const styles = () => ({
   container: {
@@ -83,7 +85,7 @@ class EditUser extends Component {
       password: this.state.passwordInput
     };
     const auth = { headers: { authorization: token } };
-    Axios.put("http://localhost:9000/user/edit", updatedUser, auth)
+    Axios.put(`${url}/user/edit`, updatedUser, auth)
       .then(res => {
         console.log(res.status);
         toast.success("User Info Sucessfully Updated");
