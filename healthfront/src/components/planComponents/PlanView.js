@@ -48,14 +48,30 @@ const PlanView = props => {
           className={classes.chip}
           variant="outlined"
           color="primary"
-          label={props.currentPlan.fromDate}
+          label={
+            props.currentPlan.fromDate
+              ? `
+          ${props.currentPlan.fromDate.split("-")[0]} / 
+          ${props.currentPlan.fromDate.split("-")[1]} /
+          ${props.currentPlan.fromDate.split("-")[2].substring(0, 2)}
+          `
+              : ""
+          }
         />
         To Date:
         <Chip
           className={classes.chip}
           variant="outlined"
           color="primary"
-          label={props.currentPlan.toDate}
+          label={
+            props.currentPlan.toDate
+              ? `
+          ${props.currentPlan.toDate.split("-")[0]} / 
+          ${props.currentPlan.toDate.split("-")[1]} /
+          ${props.currentPlan.toDate.split("-")[2].substring(0, 2)}
+          `
+              : ""
+          }
         />
       </Typography>
       <Divider />
@@ -66,7 +82,9 @@ const PlanView = props => {
               <AccessibilityIcon />
             </Avatar>
           }
-          title={`Current Weight: ${props.currentPlan.weight}`}
+          title={`Current Weight: ${
+            props.currentPlan.weight ? props.currentPlan.weight : "No Input"
+          }`}
         />
       </Card>
       <Divider />

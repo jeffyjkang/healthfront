@@ -46,8 +46,6 @@ class EditPlan extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fromDate: "",
-      toDate: "",
       exercisePlanInput: "",
       foodPlanInput: "",
       sleepPlanInput: "",
@@ -69,7 +67,7 @@ class EditPlan extends Component {
       foodPlan: this.state.foodPlanInput,
       sleepPlan: this.state.sleepPlanInput,
       miscPlan: this.state.miscPlanInput,
-      weight: this.state.weightInput,
+      weight: this.state.weightInput === "" ? null : this.state.weightInput,
       goalId: this.props.currentPlan.goalId
     };
     const auth = { headers: { authorization: token } };
@@ -96,25 +94,25 @@ class EditPlan extends Component {
   onEnterPlanEdit = () => {
     this.setState({
       ...this.state,
-      fromDate: this.props.currentPlan.fromDate,
-      toDate: this.props.currentPlan.toDate,
       exercisePlanInput: this.props.currentPlan.exercisePlan,
       foodPlanInput: this.props.currentPlan.foodPlan,
       sleepPlanInput: this.props.currentPlan.sleepPlan,
       miscPlanInput: this.props.currentPlan.miscPlan,
-      weightInput: this.props.currentPlan.weight
+      weightInput:
+        this.props.currentPlan.weight === null
+          ? ""
+          : this.props.currentPlan.weight
     });
   };
 
   onExitPlanEdit = () => {
     this.setState({
-      fromDate: "",
-      toDate: "",
       exercisePlanInput: "",
       foodPlanInput: "",
       sleepPlanInput: "",
       miscPlanInput: "",
-      weightInput: ""
+      weightInput: "",
+      deletePlanOpen: false
     });
   };
 
@@ -212,13 +210,29 @@ class EditPlan extends Component {
                 </DialogActions>
                 <Chip
                   className={classes.chip}
-                  label={`Start Date: ${this.props.currentPlan.fromDate}`}
+                  label={`Start Date: ${
+                    this.props.currentPlan.fromDate
+                      ? `${this.props.currentPlan.fromDate.split("-")[0]} /
+                        ${this.props.currentPlan.fromDate.split("-")[1]} / 
+                        ${this.props.currentPlan.fromDate
+                          .split("-")[2]
+                          .substring(0, 2)}`
+                      : ""
+                  }`}
                   variant="outlined"
                   color="primary"
                 />
                 <Chip
                   className={classes.chip}
-                  label={`End Date: ${this.props.currentPlan.toDate}`}
+                  label={`End Date: ${
+                    this.props.currentPlan.toDate
+                      ? `${this.props.currentPlan.toDate.split("-")[0]} / 
+                    ${this.props.currentPlan.toDate.split("-")[1]} / 
+                    ${this.props.currentPlan.toDate
+                      .split("-")[2]
+                      .substring(0, 2)}`
+                      : ""
+                  }`}
                   variant="outlined"
                   color="primary"
                 />

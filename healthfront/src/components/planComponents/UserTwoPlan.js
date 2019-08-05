@@ -62,7 +62,14 @@ const UserTwoPlan = props => {
               className={classes.chip}
               variant="outlined"
               color="primary"
-              label={props.userTwoPlan.fromDate}
+              label={
+                props.userTwoPlan.fromDate
+                  ? `
+              ${props.userTwoPlan.fromDate.split("-")[1]} / 
+              ${props.userTwoPlan.fromDate.split("-")[2].substring(0, 2)}
+              `
+                  : ""
+              }
             />
             <Typography className={classes.caption} variant="caption">
               To:
@@ -71,7 +78,14 @@ const UserTwoPlan = props => {
               className={classes.chip}
               variant="outlined"
               color="primary"
-              label={props.userTwoPlan.toDate}
+              label={
+                props.userTwoPlan.toDate
+                  ? `
+              ${props.userTwoPlan.toDate.split("-")[1]} / 
+              ${props.userTwoPlan.toDate.split("-")[2].substring(0, 2)}
+              `
+                  : ""
+              }
             />
           </Grid>
           <Grid item xs={10}>
