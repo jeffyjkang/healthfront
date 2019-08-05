@@ -55,6 +55,7 @@ class Login extends Component {
   };
   loginSubmit = e => {
     e.preventDefault();
+    toast.info("Logging In...");
     const user = {
       username: this.state.usernameInput,
       password: this.state.passwordInput
