@@ -61,7 +61,7 @@ class CreateGoal extends Component {
     const token = localStorage.getItem("token");
     const newGoal = {
       date: this.props.cMonthValue,
-      weight: this.state.weightInput,
+      weight: this.state.weightInput === "" ? null : this.state.weightInput,
       exerciseGoal: this.state.exerciseGoalInput,
       foodGoal: this.state.foodGoalInput,
       sleepGoal: this.state.sleepGoalInput,
@@ -117,8 +117,8 @@ class CreateGoal extends Component {
                 <Chip
                   className={classes.dateChip}
                   label={`Year: ${
-                    this.props.cMonthValue.split(" ")[1]
-                  }, Month: ${this.props.cMonthValue.split(" ")[0]}`}
+                    this.props.cMonthValue.split("-")[2]
+                  }, Month: ${this.props.cMonthValue.split("-")[0]}`}
                   variant="outlined"
                 />
               </Grid>

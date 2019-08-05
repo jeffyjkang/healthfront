@@ -111,7 +111,7 @@ class ComponentContainer extends Component {
   // create goal
   onMonth = e => {
     let cMonthValue = e.toString().split(" ");
-    cMonthValue = `${cMonthValue[1]} ${cMonthValue[3]}`;
+    cMonthValue = `${cMonthValue[1]}-${cMonthValue[2]}-${cMonthValue[3]}`;
     this.setState({ ...this.state, cMonthValue, createGoalOpen: true });
   };
   handleCloseCreateGoal = () => {

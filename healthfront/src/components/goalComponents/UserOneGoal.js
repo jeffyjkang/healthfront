@@ -61,7 +61,13 @@ const UserOneGoal = props => {
             </Button>
           </Grid>
           <Grid className={classes.dateContainer} item xs={3}>
-            <Typography variant="h6">{props.userOneGoal.date}</Typography>
+            <Typography variant="h6">
+              {props.userOneGoal.date
+                ? `Year: ${props.userOneGoal.date.split("-")[0]} / Month: ${
+                    props.userOneGoal.date.split("-")[1]
+                  }`
+                : ""}
+            </Typography>
           </Grid>
           <Grid className={classes.weightContainer} item xs={3}>
             <Typography variant="subtitle2">
