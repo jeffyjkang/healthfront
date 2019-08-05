@@ -13,13 +13,18 @@ const UserOneDayContainer = props => {
   const { classes } = props;
   return (
     <div className={classes.container}>
-      {props.days.map(userOneDay => (
-        <UserOneDay
-          key={Math.random()}
-          userOneDay={userOneDay}
-          handleOpenEditDay={props.handleOpenEditDay}
-        />
-      ))}
+      {props.days
+        .sort(
+          (a, b) =>
+            new Date(a.dailyDate).getTime() - new Date(b.dailyDate).getTime()
+        )
+        .map(userOneDay => (
+          <UserOneDay
+            key={Math.random()}
+            userOneDay={userOneDay}
+            handleOpenEditDay={props.handleOpenEditDay}
+          />
+        ))}
     </div>
   );
 };
