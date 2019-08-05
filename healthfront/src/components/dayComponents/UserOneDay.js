@@ -78,7 +78,13 @@ const UserOneDay = props => {
     <div>
       <Card className={classes.card}>
         <Typography variant="subtitle2">
-          Date: {"  "} {props.userOneDay.dailyDate}
+          Date:
+          {props.userOneDay.dailyDate
+            ? `
+          ${props.userOneDay.dailyDate.split("-")[1]} / 
+          ${props.userOneDay.dailyDate.split("-")[2].substring(0, 2)}
+          `
+            : ""}
         </Typography>
         <Divider />
         <Button
