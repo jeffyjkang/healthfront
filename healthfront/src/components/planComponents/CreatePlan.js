@@ -65,9 +65,9 @@ class CreatePlan extends Component {
     const endDate = new Date(e);
     Date(endDate.setDate(endDate.getDate() + 6));
     let startDateVal = startDate.toString().split(" ");
-    startDateVal = `${startDateVal[1]} ${startDateVal[2]}`;
+    startDateVal = `${startDateVal[1]}-${startDateVal[2]}-${startDateVal[3]}`;
     let endDateVal = endDate.toString().split(" ");
-    endDateVal = `${endDateVal[1]} ${endDateVal[2]}`;
+    endDateVal = `${endDateVal[1]}-${endDateVal[2]}-${endDateVal[3]}`;
     this.setState({
       ...this.state,
       startDate,
