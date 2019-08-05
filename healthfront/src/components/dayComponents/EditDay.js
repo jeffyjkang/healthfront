@@ -42,7 +42,6 @@ class EditDay extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: "",
       exerciseComplete: false,
       foodComplete: false,
       sleepComplete: false,
@@ -82,7 +81,6 @@ class EditDay extends Component {
         console.log(res.status);
         toast.success("Successfully Edited Day Log");
         this.setState({
-          date: "",
           exerciseComplete: false,
           foodComplete: false,
           sleepComplete: false,
@@ -104,7 +102,6 @@ class EditDay extends Component {
   onEnterDayEdit = () => {
     this.setState({
       ...this.state,
-      date: this.props.currentDay.dailyDate,
       exerciseComplete: Boolean(this.props.currentDay.exerciseComplete),
       foodComplete: Boolean(this.props.currentDay.foodComplete),
       sleepComplete: Boolean(this.props.currentDay.sleepComplete),
@@ -126,7 +123,6 @@ class EditDay extends Component {
 
   onExitDayEdit = () => {
     this.setState({
-      date: "",
       exerciseComplete: false,
       foodComplete: false,
       sleepComplete: false,
@@ -159,7 +155,15 @@ class EditDay extends Component {
             <Grid item xs={4}>
               <Chip
                 className={classes.chip}
-                label={`Date: ${this.state.date}`}
+                label={`Date: ${
+                  this.props.currentDay.dailyDate
+                    ? `
+                ${this.props.currentDay.dailyDate.split("-")[0]} / 
+                ${this.props.currentDay.dailyDate.split("-")[1]} / 
+                ${this.props.currentDay.dailyDate.split("-")[2].substring(0, 2)}
+                `
+                    : ""
+                }`}
                 color="primary"
               />
             </Grid>
