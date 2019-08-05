@@ -35,7 +35,6 @@ class ComponentContainer extends Component {
     this.state = {
       id: "",
       username: "",
-      //
       editUserOpen: false,
       //
       createGoalOpen: false,
@@ -60,7 +59,6 @@ class ComponentContainer extends Component {
     const token = localStorage.getItem("token");
     if (token) {
       jwt.verify(token, secret, (error, decodedToken) => {
-        console.log(decodedToken);
         if (error) {
           toast.error("Failed Decoding Token");
         } else {
@@ -89,11 +87,9 @@ class ComponentContainer extends Component {
       });
     }
   }
-
   refresh = () => {
     this.componentDidMount();
   };
-
   signOut = e => {
     e.preventDefault();
     localStorage.removeItem("token");
@@ -196,7 +192,6 @@ class ComponentContainer extends Component {
 
   render() {
     const { classes } = this.props;
-    console.log(this.state.username);
     return (
       <div className={classes.container}>
         <NavBar
