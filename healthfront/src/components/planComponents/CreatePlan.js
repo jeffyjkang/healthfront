@@ -89,7 +89,7 @@ class CreatePlan extends Component {
       foodPlan: this.state.foodPlanInput,
       sleepPlan: this.state.sleepPlanInput,
       miscPlan: this.state.miscPlanInput,
-      weight: this.state.weightInput,
+      weight: this.state.weightInput === "" ? null : this.state.weightInput,
       goalId: this.props.cGoalId
     };
     const auth = { headers: { authorization: token } };

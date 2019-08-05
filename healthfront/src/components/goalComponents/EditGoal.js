@@ -67,8 +67,7 @@ class EditGoal extends Component {
     const token = localStorage.getItem("token");
     const id = this.props.currentGoal.id;
     const updatedGoal = {
-      date: this.props.currentGoal.date.substring(0, 10),
-      weight: this.state.weightInput,
+      weight: this.state.weightInput === "" ? null : this.state.weightInput,
       exerciseGoal: this.state.exerciseGoalInput,
       foodGoal: this.state.foodGoalInput,
       sleepGoal: this.state.sleepGoalInput,
@@ -188,7 +187,7 @@ class EditGoal extends Component {
                   variant="outlined"
                   margin="dense"
                   name="weightInput"
-                  placeholder={String(this.props.currentGoal.weight)}
+                  placeholder={this.props.currentGoal.weight}
                   value={this.state.weightInput}
                   onChange={this.editFormHandler}
                 />
