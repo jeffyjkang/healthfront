@@ -67,7 +67,7 @@ class ComponentContainer extends Component {
             const goals = res.data;
             const userOneGoals = [];
             const userTwoGoals = [];
-            for (let i = goals.length - 1; i >= 0; i--) {
+            for (let i = 0; i < goals.length; i++) {
               if (goals[i].userId === 1) {
                 userOneGoals.push(goals[i]);
               }
