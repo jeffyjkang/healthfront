@@ -79,6 +79,7 @@ class EditUser extends Component {
   };
   //
   submitUpdateUser = () => {
+    toast.info("Updating user info...");
     const token = localStorage.getItem("token");
     const updatedUser = {
       username: this.state.usernameInput,

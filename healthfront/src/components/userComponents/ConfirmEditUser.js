@@ -41,7 +41,7 @@ const ConfirmEditUser = props => {
             <Button
               className={classes.button}
               variant="contained"
-              color="primary"
+              color="default"
               onClick={props.handleConfirmEditUserClose}
             >
               <Typography variant="button">Cancel</Typography>
@@ -49,7 +49,7 @@ const ConfirmEditUser = props => {
             <Button
               className={classes.button}
               variant="contained"
-              color="default"
+              color="primary"
               onClick={props.submitUpdateUser}
             >
               <Typography variant="button">Confirm</Typography>
