@@ -17,7 +17,7 @@ import CategoryIcon from "@material-ui/icons/Category";
 import SearchIcon from "@material-ui/icons/Search";
 import BuildIcon from "@material-ui/icons/Build";
 
-const styles = () => ({
+const styles = theme => ({
   container: {
     display: "flex"
   },
@@ -28,7 +28,11 @@ const styles = () => ({
     width: 106
   },
   card: {
-    border: "2px ridge #3F51B5"
+    border: "2px ridge #3F51B5",
+    [theme.breakpoints.down("lg")]: {
+      display: "flex",
+      justifyContent: "space-around"
+    }
   }
 });
 
