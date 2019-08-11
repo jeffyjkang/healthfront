@@ -9,7 +9,7 @@ import PageViewIcon from "@material-ui/icons/Pageview";
 import EditIcon from "@material-ui/icons/Edit";
 import UserOneDayContainer from "../dayComponents/UserOneDayContainer";
 
-const styles = () => ({
+const styles = theme => ({
   container: {
     borderTop: "1px dashed #3F51B5",
     borderBottom: "1px dashed #3F51B5",
@@ -24,12 +24,20 @@ const styles = () => ({
   },
   paperHead: {
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+    [theme.breakpoints.down("lg")]: {
+      flexDirection: "row",
+      justifyContent: "space-around"
+    }
   },
   paperTail: {
     display: "flex",
     flexDirection: "column",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    [theme.breakpoints.down("lg")]: {
+      flexDirection: "row",
+      justifyContent: "space-around"
+    }
   },
   button: {
     margin: 3
@@ -48,7 +56,7 @@ const UserOnePlan = props => {
     <div className={classes.container}>
       <Paper className={classes.paperContainer}>
         <Grid container>
-          <Grid className={classes.paperHead} item xs={1}>
+          <Grid className={classes.paperHead} item xl={1} lg={12}>
             <Chip
               className={classes.chip}
               variant="outlined"
@@ -88,13 +96,13 @@ const UserOnePlan = props => {
               }
             />
           </Grid>
-          <Grid item xs={10}>
+          <Grid item xl={10} lg={12}>
             <UserOneDayContainer
               days={props.userOnePlan.days}
               handleOpenEditDay={props.handleOpenEditDay}
             />
           </Grid>
-          <Grid className={classes.paperTail} item xs={1}>
+          <Grid className={classes.paperTail} item xl={1} lg={12}>
             <Button
               className={classes.button}
               variant="contained"
