@@ -56,7 +56,7 @@ const UserOnePlan = props => {
     <div className={classes.container}>
       <Paper className={classes.paperContainer}>
         <Grid container>
-          <Grid className={classes.paperHead} item xl={1} lg={12}>
+          <Grid className={classes.paperHead} item xl={1} lg={12} md={12}>
             <Chip
               className={classes.chip}
               variant="outlined"
@@ -102,7 +102,7 @@ const UserOnePlan = props => {
               handleOpenEditDay={props.handleOpenEditDay}
             />
           </Grid>
-          <Grid className={classes.paperTail} item xl={1} lg={12}>
+          <Grid className={classes.paperTail} item xl={1} lg={12} md={12}>
             <Button
               className={classes.button}
               variant="contained"

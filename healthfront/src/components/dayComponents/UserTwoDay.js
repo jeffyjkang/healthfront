@@ -25,7 +25,7 @@ const styles = theme => ({
     display: "flex",
     justifyContent: "space-around",
     padding: 2,
-    width: 106
+    minWidth: 106
   },
   card: {
     border: "2px ridge #3F51B5",
