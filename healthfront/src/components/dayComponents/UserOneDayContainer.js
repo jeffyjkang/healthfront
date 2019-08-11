@@ -2,10 +2,13 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import UserOneDay from "./UserOneDay";
 
-const styles = () => ({
+const styles = theme => ({
   container: {
     display: "flex",
-    justifyContent: "space-around"
+    justifyContent: "space-around",
+    [theme.breakpoints.down("lg")]: {
+      flexDirection: "column"
+    }
   }
 });
 
