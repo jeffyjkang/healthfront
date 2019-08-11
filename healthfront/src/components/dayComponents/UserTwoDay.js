@@ -19,7 +19,7 @@ import BuildIcon from "@material-ui/icons/Build";
 
 const styles = theme => ({
   container: {
-    display: "flex"
+    // display: "flex"
   },
   button: {
     display: "flex",
@@ -27,11 +27,23 @@ const styles = theme => ({
     padding: 2,
     minWidth: 106
   },
-  card: {
+  mainCard: {
     border: "2px ridge #3F51B5",
     [theme.breakpoints.down("lg")]: {
+      marginTop: 5,
+      marginBottom: 5,
       display: "flex",
       justifyContent: "space-around"
+    },
+    [theme.breakpoints.down("md")]: {
+      display: "grid",
+      gridTemplateColumns: "1fr 0fr 1fr 0fr 1fr 0fr",
+      gridTemplateRows: "1fr"
+    },
+    [theme.breakpoints.down("sm")]: {
+      display: "grid",
+      gridTemplateColumns: "1fr 0fr 1fr 0fr",
+      gridTemplateRows: "1fr"
     }
   }
 });
@@ -79,8 +91,8 @@ const UserTwoDay = props => {
   const id4 = open4 ? "simple-popper4" : undefined;
   //
   return (
-    <div>
-      <Card className={classes.card}>
+    <div className={classes.container}>
+      <Card className={classes.mainCard}>
         <Typography variant="subtitle2">
           Date:
           {props.userTwoDay.dailyDate
