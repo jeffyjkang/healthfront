@@ -43,7 +43,11 @@ const styles = theme => ({
     margin: 3
   },
   caption: {
-    marginLeft: ".5rem"
+    marginLeft: ".5rem",
+    [theme.breakpoints.down("sm")]: {
+      marginLeft: 0,
+      display: "none"
+    }
   },
   chip: {
     margin: 3
