@@ -14,7 +14,7 @@ import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const styles = () => ({
+const styles = theme => ({
   container: {
     minWidth: "98vw",
     marginTop: "1rem",
@@ -26,7 +26,10 @@ const styles = () => ({
   },
   toolbar: {
     display: "flex",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column"
+    }
   },
   button: {
     height: 50,
@@ -34,7 +37,21 @@ const styles = () => ({
     color: "white",
     boxShadow:
       "0px 1px 5px 0px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 3px 1px -2px rgba(0,0,0,0.12);",
-    border: "1px solid white"
+    border: "1px solid white",
+    [theme.breakpoints.down("sm")]: {
+      width: "50vw"
+    },
+    [theme.breakpoints.down("xs")]: {
+      width: "75vw"
+    }
+  },
+  header: {
+    [theme.breakpoints.down("md")]: {
+      order: "-1"
+    },
+    [theme.breakpoints.down("sm")]: {
+      maxWidth: "200px"
+    }
   }
 });
 
@@ -97,7 +114,9 @@ const NavBar = props => {
               <DatePicker showMonthYearPicker inline onChange={props.onMonth} />
             </MenuItem>
           </Menu>
-          <Typography variant="h2">Health Logger</Typography>
+          <Typography className={classes.header} variant="h2">
+            Health Logger
+          </Typography>
           <Button
             className={classes.button}
             variant="contained"
