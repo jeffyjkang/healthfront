@@ -12,7 +12,7 @@ import AddIcon from "@material-ui/icons/Add";
 import EditIcon from "@material-ui/icons/Edit";
 import UserOnePlanContainer from "../planComponents/UserOnePlanContainer";
 
-const styles = () => ({
+const styles = theme => ({
   container: {
     border: "1px solid #3F51B5",
     display: "flex",
@@ -26,7 +26,11 @@ const styles = () => ({
   headerContainer: {
     margin: "auto",
     padding: ".5rem",
-    borderBottom: "1px solid #3F51B5"
+    borderBottom: "1px solid #3F51B5",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+      alignItems: "center"
+    }
   },
   dateContainer: {
     textAlign: "center"
@@ -39,7 +43,11 @@ const styles = () => ({
     textAlign: "end"
   },
   footerContainer: {
-    borderTop: "1px solid #3F51B5"
+    borderTop: "1px solid #3F51B5",
+    [theme.breakpoints.down("xs")]: {
+      flexDirection: "column",
+      alignItems: "center"
+    }
   }
 });
 
@@ -49,7 +57,7 @@ const UserOneGoal = props => {
     <div className={classes.container}>
       <Paper className={classes.paper}>
         <Grid className={classes.headerContainer} container>
-          <Grid item xs={3}>
+          <Grid item xl={3} lg={3} md={3} sm={12}>
             <Button
               variant="contained"
               color="primary"
@@ -60,7 +68,14 @@ const UserOneGoal = props => {
               <Typography variant="button">Add Plan</Typography>
             </Button>
           </Grid>
-          <Grid className={classes.dateContainer} item xs={3}>
+          <Grid
+            className={classes.dateContainer}
+            item
+            xl={3}
+            lg={3}
+            md={3}
+            sm={12}
+          >
             <Typography variant="h6">
               {props.userOneGoal.date
                 ? `Year: ${props.userOneGoal.date.split("-")[0]} / Month: ${
@@ -69,12 +84,26 @@ const UserOneGoal = props => {
                 : ""}
             </Typography>
           </Grid>
-          <Grid className={classes.weightContainer} item xs={3}>
+          <Grid
+            className={classes.weightContainer}
+            item
+            xl={3}
+            lg={3}
+            md={3}
+            sm={12}
+          >
             <Typography variant="subtitle2">
               Weight: {props.userOneGoal.weight}
             </Typography>
           </Grid>
-          <Grid className={classes.buttonContainer} item xs={3}>
+          <Grid
+            className={classes.buttonContainer}
+            item
+            xl={3}
+            lg={3}
+            md={3}
+            sm={12}
+          >
             <Button
               variant="contained"
               color="primary"
@@ -97,7 +126,7 @@ const UserOneGoal = props => {
           </Grid>
         </Grid>
         <Grid className={classes.footerContainer} container>
-          <Grid item xs={3}>
+          <Grid item xl={3} lg={3} md={3} sm={3} xs={12}>
             <ExpansionPanel>
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
@@ -113,7 +142,7 @@ const UserOneGoal = props => {
               </ExpansionPanelDetails>
             </ExpansionPanel>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xl={3} lg={3} md={3} sm={3} xs={12}>
             <ExpansionPanel>
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
@@ -129,7 +158,7 @@ const UserOneGoal = props => {
               </ExpansionPanelDetails>
             </ExpansionPanel>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xl={3} lg={3} md={3} sm={3} xs={12}>
             <ExpansionPanel>
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
@@ -145,7 +174,7 @@ const UserOneGoal = props => {
               </ExpansionPanelDetails>
             </ExpansionPanel>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xl={3} lg={3} md={3} sm={3} xs={12}>
             <ExpansionPanel>
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}

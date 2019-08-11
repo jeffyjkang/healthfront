@@ -43,7 +43,11 @@ const styles = theme => ({
     margin: 3
   },
   caption: {
-    marginLeft: ".5rem"
+    marginLeft: ".5rem",
+    [theme.breakpoints.down("sm")]: {
+      marginLeft: 0,
+      display: "none"
+    }
   },
   chip: {
     margin: 3
@@ -56,7 +60,15 @@ const UserTwoPlan = props => {
     <div className={classes.container}>
       <Paper className={classes.paperContainer}>
         <Grid container>
-          <Grid className={classes.paperHead} item xl={1} lg={12}>
+          <Grid
+            className={classes.paperHead}
+            item
+            xl={1}
+            lg={12}
+            md={12}
+            sm={12}
+            xs={12}
+          >
             <Chip
               className={classes.chip}
               variant="outlined"
@@ -96,13 +108,29 @@ const UserTwoPlan = props => {
               }
             />
           </Grid>
-          <Grid item xl={10} lg={12}>
+          <Grid
+            className={classes.paperBody}
+            item
+            xl={10}
+            lg={12}
+            md={12}
+            sm={12}
+            xs={12}
+          >
             <UserTwoDayContainer
               days={props.userTwoPlan.days}
               handleOpenEditDay={props.handleOpenEditDay}
             />
           </Grid>
-          <Grid className={classes.paperTail} item xl={1} lg={12}>
+          <Grid
+            className={classes.paperTail}
+            item
+            xl={1}
+            lg={12}
+            md={12}
+            sm={12}
+            xs={12}
+          >
             <Button
               className={classes.button}
               variant="contained"
